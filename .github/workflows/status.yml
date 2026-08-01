@@ -12,17 +12,26 @@ jobs:
       - uses: actions/checkout@v4
       - name: Ping deployments and write status.json
         run: |
-          check() { code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 25 -L "$1" || echo 000); if [ "$code" -ge 200 ] && [ "$code" -lt 400 ]; then echo true; else echo false; fi; }
-          SITE=$(check "https://cmblum2.github.io/camryn-portfolio/")
-          NL2SQL=$(check "https://ask-your-warehouse.streamlit.app")
-          RAG=$(check "https://creator-insight-assistant.onrender.com")
-          DBT=$(check "https://github.com/cmblum2/retail-analytics-dbt/actions/workflows/ci.yml/badge.svg")
+          # classify <url> <kind>  ->  up | idle | down
+          #   kind=core    : should always be up; a redirect still counts as up, anything else is down
+          #   kind=sleeper : free-tier app that naps; 2xx = up, otherwise (3xx redirect / timeout / 5xx) = idle
+          classify() {
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 25 "$1" || echo 000)
+            if [ "$code" -ge 200 ] && [ "$code" -lt 300 ]; then echo up
+            elif [ "$2" = "core" ] && [ "$code" -ge 300 ] && [ "$code" -lt 400 ]; then echo up
+            elif [ "$2" = "sleeper" ]; then echo idle
+            else echo down; fi
+          }
+          SITE=$(classify "https://cmblum2.github.io/camryn-portfolio/" core)
+          NL2SQL=$(classify "https://ask-your-warehouse.streamlit.app" sleeper)
+          RAG=$(classify "https://creator-insight-assistant.onrender.com" sleeper)
+          DBT=$(classify "https://github.com/cmblum2/retail-analytics-dbt/actions/workflows/ci.yml/badge.svg" core)
           cat > status.json <<EOF
           { "systems": [
-            { "name": "site", "up": $SITE },
-            { "name": "nl2sql", "up": $NL2SQL },
-            { "name": "rag", "up": $RAG },
-            { "name": "dbt-ci", "up": $DBT }
+            { "name": "site", "state": "$SITE" },
+            { "name": "nl2sql", "state": "$NL2SQL" },
+            { "name": "rag", "state": "$RAG" },
+            { "name": "dbt-ci", "state": "$DBT" }
           ], "checkedAt": "$(date -u +%FT%TZ)" }
           EOF
       - name: Commit if changed

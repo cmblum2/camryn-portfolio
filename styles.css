@@ -66,9 +66,15 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 .syscount{color:var(--green)}
 .sysitem{display:inline-flex;align-items:center;gap:5px}
 .sysitem.down{color:#ff7b72}
+.sysitem.idle{color:var(--amber)}
 .sysdim{color:var(--dim2)}
 .sdot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);display:inline-block;animation:pulse 2s infinite}
 .sysitem.down .sdot{background:#ff7b72;box-shadow:0 0 7px #ff7b72}
+.sysitem.idle .sdot{background:var(--amber);box-shadow:0 0 7px var(--amber)}
+.syscount.idle{color:var(--amber)}
+.syscount.idle .sdot{background:var(--amber);box-shadow:0 0 7px var(--amber)}
+.syscount.down{color:#ff7b72}
+.syscount.down .sdot{background:#ff7b72;box-shadow:0 0 7px #ff7b72}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
 .stage{padding:56px 0 30px;text-align:center}
