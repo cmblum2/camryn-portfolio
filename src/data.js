@@ -37,10 +37,14 @@ export const metrics = [
 export const projects = [
   { id: 'nl2sql', title: 'Ask-Your-Warehouse — NL→SQL agent', lenses: ['AI', 'BI'],
     blurb: 'LangGraph + Claude turns plain questions into governed SQL with guardrails and self-repair. Eval: 8/8.',
-    tags: ['LangGraph', 'guardrails', 'eval'] },
+    tags: ['LangGraph', 'guardrails', 'eval'],
+    repo: 'https://github.com/cmblum2/nl2sql-agent',
+    demo: 'https://ask-your-warehouse.streamlit.app' },
   { id: 'rag', title: 'Creator Insight Assistant — RAG', lenses: ['AI', 'ML'],
     blurb: 'Chroma + LangGraph + Claude with a RAGAS harness; an MMR fix lifted context recall +75%.',
-    tags: ['RAG', 'Chroma', 'RAGAS'] },
+    tags: ['RAG', 'Chroma', 'RAGAS'],
+    repo: 'https://github.com/cmblum2/creator-insight-assistant',
+    demo: 'https://creator-insight-assistant.onrender.com' },
   { id: 'roi', title: 'Causal marketing-ROI engine', lenses: ['ML', 'IB'],
     blurb: 'Refund-adjusted order-level attribution, matched-control diff-in-diff with CIs, out-of-sample dollar backtest.',
     tags: ['causal inference', 'backtest', 'calibration'] },
@@ -55,7 +59,8 @@ export const projects = [
     tags: ['simulation', 'build-vs-buy', 'finance'] },
   { id: 'dbt', title: 'dbt + BigQuery warehouse', lenses: ['BI', 'AI'],
     blurb: 'ELT with data tests, lineage, and a green GitHub Actions CI pipeline on synthetic data.',
-    tags: ['dbt', 'BigQuery', 'CI'] },
+    tags: ['dbt', 'BigQuery', 'CI'],
+    repo: 'https://github.com/cmblum2/retail-analytics-dbt' },
 ];
 
 // Signature "audit any claim" case studies.
@@ -83,9 +88,9 @@ export const demos = [
     url: 'https://ask-your-warehouse.streamlit.app' },
   { title: 'Creator Insight Assistant — RAG', live: true,
     blurb: 'Chroma + LangGraph + Claude with a RAGAS harness. An MMR fix lifted context recall +75%.',
-    url: '#' /* TODO(camryn): paste the live RAG demo/repo URL before launch */ },
+    url: 'https://creator-insight-assistant.onrender.com' },
 ];
 
 export const links = {
-  github: '#', linkedin: '#', resume: '#', email: 'camrynblum@gmail.com',
+  github: 'https://github.com/cmblum2', linkedin: '#', resume: '#', email: 'camrynblum@gmail.com',
 };

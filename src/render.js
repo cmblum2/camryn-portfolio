@@ -34,6 +34,10 @@ export function renderProjects(projects, lens) {
       <h3>${esc(p.title)}</h3>
       <p>${esc(p.blurb)}</p>
       <div>${p.tags.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+      ${(p.repo || p.demo) ? `<div class="plinks">
+        ${p.repo ? `<a class="lk" href="${esc(p.repo)}" target="_blank" rel="noopener">Repo →</a>` : ''}
+        ${p.demo ? `<a class="lk" href="${esc(p.demo)}" target="_blank" rel="noopener">Live demo →</a>` : ''}
+      </div>` : ''}
     </div>`).join('');
   return `<div class="demos">${cards}</div>`;
 }
