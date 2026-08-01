@@ -10,9 +10,15 @@ let currentLens = 'AI';
 let timer = null;
 
 const QUESTION = {
-  sell: 'how did you help sell a company?', prove: "prove your AI's calls were right",
-  voice: 'tell me about the voice AI agent', deploy: 'what have you deployed?',
-  warehouse: 'show me the data warehouse', stack: "what's your stack?",
+  sell: 'how did you help sell a company?',
+  engine: 'prove your AI made the right calls',
+  dashboard: 'what did the exec dashboard do?',
+  nl2sql: 'what is the NL→SQL agent?',
+  dbt: 'show me the dbt / BigQuery project',
+  voice: 'tell me about the voice AI agent',
+  warehouse: 'show me the data warehouse',
+  stack: "what's your stack?",
+  deploy: 'what have you deployed?',
 };
 function firstQuestion(e) { return QUESTION[e.id] || e.headline; }
 

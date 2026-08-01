@@ -6,8 +6,17 @@ import { entries } from '../src/warehouse.js';
 test('route matches the acquisition story', () => {
   assert.equal(route('how did you help sell a company?', entries).id, 'sell');
 });
-test('route matches the AI backtest story', () => {
-  assert.equal(route('can you prove your AI was right?', entries).id, 'prove');
+test('route matches the decision engine / backtest story', () => {
+  assert.equal(route('can you prove your AI was right?', entries).id, 'engine');
+});
+test('route matches the exec dashboard', () => {
+  assert.equal(route('what did the exec dashboard do?', entries).id, 'dashboard');
+});
+test('route matches the NL->SQL agent', () => {
+  assert.equal(route('what is the natural language to sql agent?', entries).id, 'nl2sql');
+});
+test('route matches the dbt project', () => {
+  assert.equal(route('show me the dbt bigquery project', entries).id, 'dbt');
 });
 test('route matches deployments', () => {
   assert.equal(route('what have you deployed?', entries).id, 'deploy');
@@ -22,6 +31,6 @@ test('route falls back to the warehouse root on no match', () => {
   assert.equal(route('xyzzy nonsense', entries).id, 'warehouse');
 });
 test('plan returns the entry query-plan string', () => {
-  const e = entries.find(x => x.id === 'prove');
+  const e = entries.find(x => x.id === 'engine');
   assert.equal(plan(e), e.plan);
 });
