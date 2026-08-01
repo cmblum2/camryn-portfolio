@@ -59,3 +59,25 @@ export function renderStack(stack) {
     <div class="scol"><h4>${esc(col.group)}</h4>${col.items.map(i => `<div>${esc(i)}</div>`).join('')}</div>
   `).join('')}</div>`;
 }
+
+// Compose an answer card for one warehouse entry. Narrative is present in the HTML
+// (SEO/no-JS safe); app.js may re-animate it with a streaming effect.
+export function renderAnswer(entry, planText) {
+  const nodes = (entry.lineage || []).map((n, i) =>
+    `<span class="node ${i === entry.hot ? 'hot' : ''}">${esc(n)}</span>`
+  ).join('<span class="arw">→</span>');
+  const links = (entry.links && entry.links.length)
+    ? `<div class="links">${entry.links.map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} →</a>`).join('')}</div>`
+    : '';
+  return `
+    <div class="plan">&gt; parsing intent… compiling query
+&gt; ${esc(planText)}</div>
+    <div class="answer">
+      <div class="metric">${esc(entry.metric)}</div>
+      <div class="mlabel">${esc(entry.mlabel)}</div>
+      <h3>${esc(entry.headline)}</h3>
+      <div class="narr">${esc(entry.narrative)}</div>
+      <div class="lineage"><span class="ll">data lineage</span>${nodes}</div>
+      ${links}
+    </div>`;
+}
