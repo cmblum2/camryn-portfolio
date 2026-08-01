@@ -19,7 +19,7 @@ export const entries = [
     narrative: "A LangGraph + Claude decision engine classifies ad campaigns scale/cut against margin breakeven. Then I backtested it out of sample — recompute every verdict from data before a cutoff, measure what happened after. 100% profitable/unprofitable accuracy; it flagged up to $197K of below-breakeven spend. (Honest caveat: the 'keep' side rested on few campaigns, so I lean on the robust 'stop' side.)",
     lineage: ['SQL warehouse', 'decision engine (LangGraph)', 'out-of-sample dollar backtest'], hot: 1,
     links: [['Repo', 'https://github.com/cmblum2/nl2sql-agent'], ['Live demo', 'https://ask-your-warehouse.streamlit.app']] },
-  { id: 'voice', lenses: ['AI', 'ML'],
+  { id: 'voice', lenses: ['AI', 'ML'], root: 'lab', rootLabel: 'research lab',
     keywords: ['voice', 'realtime', 'audio', 'hands-free', 'speech', 'dictation', 'assistant', 'openai', 'agent'],
     plan: "SELECT story FROM career WHERE domain = 'voice-ai' → 1 row",
     metric: 'full-duplex', mlabel: 'realtime voice agent · co-authored',
