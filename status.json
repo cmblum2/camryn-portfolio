@@ -1,6 +1,6 @@
 { "systems": [
   { "name": "site", "up": true },
   { "name": "nl2sql", "up": false },
-  { "name": "rag", "up": true },
+  { "name": "rag", "up": false },
   { "name": "dbt-ci", "up": true }
-], "checkedAt": "2026-08-01T03:27:39Z" }
+], "checkedAt": "2026-08-01T06:15:33Z" }
