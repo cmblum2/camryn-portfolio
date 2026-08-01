@@ -1,0 +1,4 @@
+node_modules/
+tests/denylist.local.js
+.DS_Store
+*.log
