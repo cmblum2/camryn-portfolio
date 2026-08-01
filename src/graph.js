@@ -25,7 +25,7 @@ export function buildGraph(entries, opts = {}) {
   const gGap = groups.length > 1 ? gSpan / (groups.length - 1) : 0;
   groups.forEach((g, gi) => {
     const gy = Math.round(gTop + gi * gGap);
-    grpLabels += `<text x="558" y="${gy - 26}" ${MONO(10)} fill="#f0b429" letter-spacing="1">${esc(g.label)}</text>`;
+    grpLabels += `<text x="590" y="${gy - 24}" ${MONO(10)} fill="#f0b429" letter-spacing="1">${esc(g.label)}</text>`;
     g.ids.forEach((id, j) => {
       const e = byId[id]; if (!e) return;
       const x = 612 + j * 155, y = gy;
@@ -50,7 +50,7 @@ export function buildGraph(entries, opts = {}) {
   });
 
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="Career lineage: sources to warehouse to projects">`
-    + `${srcEdges}${prodEdges}${srcNodes}${prodNodes}${wh}${beyondSvg}</svg>`;
+    + `${srcEdges}${prodEdges}${grpLabels}${srcNodes}${prodNodes}${wh}${beyondSvg}</svg>`;
 }
 
 function projNode(x, y, id, label, tag) {
