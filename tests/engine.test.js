@@ -12,6 +12,9 @@ test('route matches the AI backtest story', () => {
 test('route matches deployments', () => {
   assert.equal(route('what have you deployed?', entries).id, 'deploy');
 });
+test('route matches the voice AI agent', () => {
+  assert.equal(route('tell me about the voice AI agent', entries).id, 'voice');
+});
 test('route is case-insensitive', () => {
   assert.equal(route('SHOW ME THE DATA WAREHOUSE', entries).id, 'warehouse');
 });

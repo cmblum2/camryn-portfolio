@@ -11,7 +11,8 @@ let timer = null;
 
 const QUESTION = {
   sell: 'how did you help sell a company?', prove: "prove your AI's calls were right",
-  deploy: 'what have you deployed?', warehouse: 'show me the data warehouse', stack: "what's your stack?",
+  voice: 'tell me about the voice AI agent', deploy: 'what have you deployed?',
+  warehouse: 'show me the data warehouse', stack: "what's your stack?",
 };
 function firstQuestion(e) { return QUESTION[e.id] || e.headline; }
 
