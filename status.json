@@ -1,0 +1,6 @@
+{ "systems": [
+  { "name": "site", "up": true },
+  { "name": "nl2sql", "up": true },
+  { "name": "rag", "up": true },
+  { "name": "dbt-ci", "up": true }
+], "checkedAt": "seed" }
