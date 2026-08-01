@@ -3,74 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Camryn Blum — AI · ML · BI · IB</title>
-<meta name="description" content="Camryn Blum — CS + Data Science, UW–Madison. Applied AI, measured in outcomes.">
+<title>Camryn Blum — Query my career warehouse</title>
+<meta name="description" content="An agentic portfolio: query my career warehouse. AI · ML · BI · IB — CS + Data Science, UW–Madison.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="nav"><div class="wrap">
     <div class="brand">CAMRYN<i>.</i>BLUM</div>
-    <div class="lens" id="lens">
-      <button data-lens="AI" class="on">AI</button>
-      <button data-lens="ML">ML</button>
-      <button data-lens="BI">BI</button>
-      <button data-lens="IB">IB</button>
-    </div>
+    <div class="sys" id="sys"><span class="sysdim">checking systems…</span></div>
   </div></div>
 
-  <div class="wrap hero" id="hero"><!-- renderHero --></div>
+  <div class="wrap stage">
+    <div class="eyebrow">an agent over my career — not a brochure</div>
+    <h1>Ask my career <span>warehouse.</span></h1>
+    <p class="p">Everything I've built runs on one warehouse. Query it — the engine assembles the answer.</p>
+    <div class="lens" id="lens">
+      <button data-lens="AI" class="on">AI</button><button data-lens="ML">ML</button>
+      <button data-lens="BI">BI</button><button data-lens="IB">IB</button>
+    </div>
+    <div class="bar">
+      <span class="car">&gt;</span>
+      <input id="q" placeholder="e.g. how did you help sell a company?" autocomplete="off">
+      <button id="go">Query</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div id="out"></div>
+  </div>
 
-  <section id="demos"><div class="wrap">
-    <div class="kicker">01 · Try it yourself</div>
-    <h2 class="sec">Live demos</h2>
-    <p class="sec-sub">Not screenshots — working systems you can open in a new tab right now.</p>
-    <div class="demos" id="demo-cards"><!-- renderDemos --></div>
+  <section id="graph-sec"><div class="wrap">
+    <div class="kicker">the lineage</div>
+    <h2 class="sec">Everything runs on the warehouse</h2>
+    <p class="sec-sub">Click a node to query it.</p>
+    <div class="graphwrap" id="graph"></div>
   </div></section>
 
   <section id="work"><div class="wrap">
-    <div class="kicker">02 · Audit any claim</div>
+    <div class="kicker">or just browse · audit any claim</div>
     <h2 class="sec">Every number, with its evidence — and its caveat</h2>
-    <p class="sec-sub">Method, result, and the honest limit. The caveat is the point.</p>
-    <div id="cases"><!-- renderCaseStudies --></div>
-    <div class="kicker" style="margin-top:44px">03 · Featured work</div>
-    <div id="projects"><!-- renderProjects --></div>
+    <div id="cases"></div>
   </div></section>
 
   <section><div class="wrap">
-    <div class="kicker">04 · The stack</div>
+    <div class="kicker">the stack</div>
     <h2 class="sec">Named tools, honestly earned</h2>
-    <p class="sec-sub">Everything here maps to a shipped project — not a course checklist.</p>
-    <div id="stack"><!-- renderStack --></div>
-  </div></section>
-
-  <section><div class="wrap">
-    <div class="kicker">05 · How I think</div>
-    <h2 class="sec">A second brain, made public</h2>
-    <p class="sec-sub">Projects, skills, and stories as a connected system.</p>
-    <div class="graphwrap" id="graph">
-      <svg viewBox="0 0 900 300" style="width:100%;height:auto;display:block">
-        <g stroke="#232a34" stroke-width="1">
-          <line x1="450" y1="150" x2="250" y2="80"/><line x1="450" y1="150" x2="680" y2="70"/>
-          <line x1="450" y1="150" x2="220" y2="230"/><line x1="450" y1="150" x2="700" y2="230"/>
-          <line x1="450" y1="150" x2="450" y2="55"/><line x1="250" y1="80" x2="450" y2="55"/>
-          <line x1="680" y1="70" x2="700" y2="230"/><line x1="220" y1="230" x2="450" y2="55"/>
-        </g>
-        <g font-family="'JetBrains Mono',monospace" font-size="11" fill="#aeb4bd" text-anchor="middle">
-          <circle cx="450" cy="150" r="16" fill="#f0b429"/><text x="450" y="182" fill="#7c828c">portfolio brain</text>
-          <circle cx="250" cy="80" r="10" fill="#3fb950"/><text x="250" y="60">RAG · eval</text>
-          <circle cx="680" cy="70" r="10" fill="#58a6ff"/><text x="680" y="50">warehouse</text>
-          <circle cx="220" cy="230" r="10" fill="#bc8cff"/><text x="220" y="255">LangGraph agent</text>
-          <circle cx="700" cy="230" r="10" fill="#ff7b72"/><text x="700" y="255">causal ROI</text>
-          <circle cx="450" cy="55" r="9" fill="#3fb950"/><text x="450" y="35">dbt · BigQuery</text>
-        </g>
-      </svg>
-    </div>
-    <div class="graph-cap">// projects, skills, and stories as one connected system</div>
+    <div id="stack"></div>
   </div></section>
 
   <footer><div class="wrap">
     <div class="big">Let's build something measurable.</div>
-    <div class="links" id="links"><!-- filled by app.js --></div>
+    <div class="links" id="footlinks"></div>
   </div></footer>
 
   <script type="module" src="src/app.js"></script>
