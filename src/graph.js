@@ -6,7 +6,7 @@
 export function buildGraph(entries, opts = {}) {
   const { sources = [], groups = [], beyond = [] } = opts;
   const byId = Object.fromEntries(entries.map(e => [e.id, e]));
-  const W = 1000, H = 540, whX = 330, whY = 200;
+  const W = 1000, H = 560, whX = 330, whY = 190;
 
   // sources column (left) → warehouse
   const sx = 104, sTop = 70, sSpan = 260;
@@ -19,18 +19,22 @@ export function buildGraph(entries, opts = {}) {
       + `<text x="${sx - 13}" y="${y + 3}" text-anchor="end" ${MONO(9)} fill="#8a909a">${esc(s)}</text></g>`;
   });
 
-  // production projects (right), grouped by business function
+  // projects (right), grouped by business function; a `dashed` group = public rebuilds of the warehouse
   let prodEdges = '', prodNodes = '', grpLabels = '';
-  const gTop = 74, gSpan = 300;
+  const gTop = 60, gSpan = 320;
   const gGap = groups.length > 1 ? gSpan / (groups.length - 1) : 0;
   groups.forEach((g, gi) => {
     const gy = Math.round(gTop + gi * gGap);
-    grpLabels += `<text x="590" y="${gy - 24}" ${MONO(10)} fill="#f0b429" letter-spacing="1">${esc(g.label)}</text>`;
+    const labelColor = g.dashed ? '#8aa0c0' : '#f0b429';
+    grpLabels += `<text x="590" y="${gy - 22}" ${MONO(10)} fill="${labelColor}" letter-spacing="1">${esc(g.label)}</text>`;
     g.ids.forEach((id, j) => {
       const e = byId[id]; if (!e) return;
       const x = 612 + j * 155, y = gy;
-      prodEdges += `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#232a34" stroke-width="1"/>`;
-      prodNodes += projNode(x, y, id, e.label || id);
+      const edge = g.dashed
+        ? `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#33405c" stroke-width="1" stroke-dasharray="4 4"/>`
+        : `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#232a34" stroke-width="1"/>`;
+      prodEdges += edge;
+      prodNodes += projNode(x, y, id, e.label || id, null, g.dashed);
     });
   });
 
@@ -39,13 +43,13 @@ export function buildGraph(entries, opts = {}) {
     + `<circle cx="${whX}" cy="${whY}" r="18" fill="#f0b429"/>`
     + `<text x="${whX}" y="${whY + 37}" text-anchor="middle" ${MONO(11)} fill="#7c828c">warehouse · built from scratch</text></g>`;
 
-  // detached "beyond the warehouse" band
-  const bandY = 424;
+  // detached band: a genuinely separate domain (research-lab voice AI), not on the warehouse
+  const bandY = 452;
   let beyondSvg = `<line x1="60" y1="${bandY}" x2="940" y2="${bandY}" stroke="#1a1f27" stroke-width="1" stroke-dasharray="4 4"/>`
-    + `<text x="60" y="${bandY - 10}" ${MONO(10)} fill="#7c828c" letter-spacing="1">BEYOND THE WAREHOUSE — PUBLIC REBUILDS &amp; ANOTHER DOMAIN</text>`;
+    + `<text x="60" y="${bandY - 10}" ${MONO(10)} fill="#7c828c" letter-spacing="1">ANOTHER DOMAIN — SEPARATE FROM THE WAREHOUSE</text>`;
   beyond.forEach((id, i) => {
     const e = byId[id]; if (!e) return;
-    const x = 190 + i * 230, y = bandY + 60;
+    const x = 190 + i * 230, y = bandY + 58;
     beyondSvg += projNode(x, y, id, e.label || id, e.rootLabel);
   });
 
@@ -53,10 +57,11 @@ export function buildGraph(entries, opts = {}) {
     + `${srcEdges}${prodEdges}${grpLabels}${srcNodes}${prodNodes}${wh}${beyondSvg}</svg>`;
 }
 
-function projNode(x, y, id, label, tag) {
+function projNode(x, y, id, label, tag, muted) {
   const t = tag ? `<text x="${x}" y="${y + 33}" text-anchor="middle" ${MONO(8)} fill="#6b7280">${esc(tag)}</text>` : '';
+  const stroke = muted ? '#6b86b0' : '#f0b429';
   return `<g class="gnode" data-id="${id}" style="cursor:pointer">`
-    + `<circle cx="${x}" cy="${y}" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/>`
+    + `<circle cx="${x}" cy="${y}" r="8" fill="#0e1219" stroke="${stroke}" stroke-width="1.5"/>`
     + `<text x="${x}" y="${y + 20}" text-anchor="middle" ${MONO(9.5)} fill="#c9cdd4">${esc(label)}</text>${t}</g>`;
 }
 

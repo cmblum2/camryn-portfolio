@@ -9,9 +9,12 @@ export const graphGroups = [
   { key: 'finance', label: 'the sale · finance', ids: ['sell', 'fbt'] },
   { key: 'growth', label: 'affiliate growth engine', ids: ['discovery', 'engine', 'n8n'] },
   { key: 'bi', label: 'exec visibility', ids: ['dashboard'] },
+  // Public rebuilds modeled on the SAME warehouse (synthetic data) — connected, but dashed to
+  // mark them as shareable rebuilds rather than production systems.
+  { key: 'rebuild', label: 'public rebuilds · modeled on the warehouse', ids: ['nl2sql', 'dbt'], dashed: true },
 ];
-// Detached "beyond the warehouse" band: public rebuilds + the separate research-lab domain.
-export const beyondIds = ['nl2sql', 'dbt', 'voice'];
+// Detached band: only the genuinely different domain (research-lab voice AI).
+export const beyondIds = ['voice'];
 
 // ---- Career warehouse: the query engine's entries ----
 // root: 'warehouse' = ran on the production warehouse I built. 'public' = synthetic rebuild.
@@ -70,7 +73,7 @@ export const entries = [
     plan: "-- \"show Q3 revenue by channel\"  →  SELECT ... (read-only, role-scoped)",
     metric: '5 roles', mlabel: 'governed NL→SQL agent · live',
     headline: 'Ask-Your-Warehouse: plain English → governed SQL.',
-    narrative: "A public portfolio build (synthetic data): a LangGraph agent that turns a plain-English question into SQL, runs it, and answers with a chart — with real guardrails, not just prompts. It only writes read-only SELECTs, self-repairs when a query errors, and enforces role-based access at three layers: a CEO sees everything, an intern sees no dollar amounts. Ask it to 'delete all orders' and it refuses. The live demo has five role logins.",
+    narrative: "This is a public, shareable rebuild modeled on my own warehouse — same schema and roles, synthetic data — so the skill is visible without exposing anything private. A LangGraph agent turns a plain-English question into SQL, runs it, and answers with a chart, with real guardrails (not just prompts): it only writes read-only SELECTs, self-repairs when a query errors, and enforces role-based access at three layers — a CEO sees everything, an intern sees no dollar amounts. Ask it to 'delete all orders' and it refuses. Five role logins in the live demo.",
     lineage: ['plain-English question', 'LangGraph → guardrailed read-only SQL', 'chart + answer, or a refusal'], hot: 1,
     links: [['Repo', 'https://github.com/cmblum2/nl2sql-agent'], ['Live demo', 'https://ask-your-warehouse.streamlit.app']] },
   { id: 'dbt', root: 'public', label: 'dbt', lenses: ['BI', 'AI'],
@@ -78,7 +81,7 @@ export const entries = [
     plan: "dbt build → 3 seeds · 6 models · 22/22 tests passed (CI on every push)",
     metric: '22/22 tests', mlabel: 'dbt + BigQuery, CI-tested',
     headline: 'A retail warehouse, modeled the analytics-engineering way.',
-    narrative: "A public portfolio build (synthetic data): a retail sales warehouse modeled in dbt on BigQuery — raw → staging → marts (fact and dimension tables), with data tests (not-null, unique, relationships), auto-generated lineage docs, and GitHub Actions CI that runs the full build + all tests on every push. It's the named-stack, reproducible version of the warehouse modeling I did by hand in production.",
+    narrative: "A public, shareable rebuild that models my warehouse in dbt on BigQuery (synthetic data) — the named-stack, reproducible version of the modeling I did by hand in production. raw → staging → marts (fact and dimension tables), with data tests (not-null, unique, relationships), auto-generated lineage docs, and GitHub Actions CI that runs the full build + all tests on every push.",
     lineage: ['raw seeds', 'staging → marts (dbt)', '22 data tests, green in CI'], hot: 1,
     links: [['Repo', 'https://github.com/cmblum2/retail-analytics-dbt']] },
   { id: 'voice', root: 'lab', rootLabel: 'research lab', label: 'voice AI', lenses: ['AI', 'ML'],
