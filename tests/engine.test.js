@@ -18,6 +18,15 @@ test('route matches the NL->SQL agent', () => {
 test('route matches the dbt project', () => {
   assert.equal(route('show me the dbt bigquery project', entries).id, 'dbt');
 });
+test('route matches the creator-discovery ML system', () => {
+  assert.equal(route('the affiliate ml system where you scrape comments', entries).id, 'discovery');
+});
+test('route matches the n8n workflow', () => {
+  assert.equal(route('tell me about the n8n workflow', entries).id, 'n8n');
+});
+test('route matches the build-vs-buy simulation', () => {
+  assert.equal(route('the fulfilled-by-tiktok build vs buy call', entries).id, 'fbt');
+});
 test('route matches deployments', () => {
   assert.equal(route('what have you deployed?', entries).id, 'deploy');
 });

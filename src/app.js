@@ -60,7 +60,7 @@ async function init() {
   document.getElementById('q').addEventListener('keydown', e => { if (e.key === 'Enter') runQuery(); });
   document.getElementById('lens').addEventListener('click', e => { const b = e.target.closest('button[data-lens]'); if (b) setLens(b.dataset.lens); });
 
-  document.getElementById('graph').innerHTML = buildGraph(wh.entries);
+  document.getElementById('graph').innerHTML = buildGraph(wh.entries, { sources: wh.sources, groups: wh.graphGroups, beyond: wh.beyondIds });
   document.getElementById('graph').addEventListener('click', e => {
     const g = e.target.closest('.gnode');
     if (g) { fire(g.dataset.id); document.getElementById('out').scrollIntoView({ behavior: 'smooth' }); }
