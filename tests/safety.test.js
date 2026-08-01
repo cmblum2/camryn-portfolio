@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import * as data from '../src/data.js';
+import * as data from '../src/warehouse.js';
 
 // Base denylist: obvious tokens safe to name in a public repo as things to EXCLUDE.
 const BASE_DENY = ['FHIHeat', 'FHIHeatDB', 'FHIHeatQuant'];
