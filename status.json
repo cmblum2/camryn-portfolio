@@ -3,4 +3,4 @@
   { "name": "nl2sql", "state": "idle" },
   { "name": "rag", "state": "idle" },
   { "name": "dbt-ci", "state": "up" }
-], "checkedAt": "2026-08-04T12:55:08Z" }
+], "checkedAt": "2026-08-04T15:20:29Z" }
