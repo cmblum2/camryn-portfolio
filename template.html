@@ -12,13 +12,37 @@
 <body>
   <div class="nav"><div class="wrap">
     <div class="brand">CAMRYN<i>.</i>BLUM</div>
-    <div class="sys" id="sys"><span class="sysdim">checking systems…</span></div>
+    <div class="navright">
+      <nav class="navlinks"><!--BUILD:NAVLINKS--></nav>
+      <div class="sys" id="sys"><span class="sysdim">checking systems…</span></div>
+    </div>
   </div></div>
 
-  <div class="wrap stage">
-    <div class="eyebrow">an agent over my career — not a brochure</div>
-    <h1>Ask my career <span>warehouse.</span></h1>
-    <p class="p">Everything I've built runs on one warehouse. Query it — the engine assembles the answer.</p>
+  <!-- 1 · THE VERDICT (static, 15-second read) -->
+  <header class="hero2"><div class="wrap">
+    <div class="eyebrow">Data &amp; AI · CS + Data Science, UW–Madison · built at FHI Heat</div>
+    <h1 class="h1big">I built FHI Heat's data warehouse from scratch —<br>then most of the tools that ran on it.</h1>
+    <!--BUILD:THESIS-->
+    <div class="cta">
+      <a class="btn p" href="#work">See the work ↓</a>
+      <a class="btn g" href="#system">Ask my warehouse →</a>
+    </div>
+  </div></header>
+
+  <!-- 2 · SKILLS (keyword scan) -->
+  <section id="skills"><div class="wrap">
+    <div class="kicker">toolbox</div>
+    <h2 class="sec">Skills — each one tied to a shipped project</h2>
+    <p class="sec-sub">Core: Python · SQL · LangGraph · dbt · BigQuery · Power BI · Next.js · machine learning · causal inference.</p>
+    <div id="stack"><!--BUILD:STACK--></div>
+  </div></section>
+
+  <!-- 3 · THE SYSTEM (map + optional query) -->
+  <section id="system"><div class="wrap">
+    <div class="kicker">the system</div>
+    <h2 class="sec">Everything ran on the warehouse I built</h2>
+    <p class="sec-sub">Sources → the warehouse → what it powered (solid), plus public rebuilds modeled on it (dashed) and one separate research-lab project. Click a node — or ask it anything.</p>
+    <div class="graphwrap" id="graph"><!--BUILD:GRAPH--></div>
     <div class="lens" id="lens">
       <button data-lens="AI" class="on">AI</button><button data-lens="ML">ML</button>
       <button data-lens="BI">BI</button><button data-lens="IB">IB</button>
@@ -30,41 +54,20 @@
     </div>
     <div class="chips" id="chips"></div>
     <div id="out"></div>
-  </div>
-
-  <!--BUILD:TLDR-->
-
-  <section id="graph-sec"><div class="wrap">
-    <div class="kicker">the build · FHI Heat</div>
-    <h2 class="sec">I built the warehouse from scratch — everything ran on it</h2>
-    <p class="sec-sub">At <strong>FHI Heat</strong> — the professional hair-tools brand — the company's data lived in five disconnected systems. I unified them into one warehouse with nightly ingestion, then built the tools the team actually ran on top of it — from an ML system that found which creators to recruit, to a decision engine that scored their spend, to the exec dashboard leadership watched. Click any node to query it.</p>
-    <div class="graphwrap" id="graph"><!--BUILD:GRAPH--></div>
-    <p class="graph-cap">left: the sources I connected · center: the warehouse · right: what it powered (solid) plus public rebuilds modeled on the same warehouse (dashed) · below the line: the one genuinely separate project — SteMy voice AI for a research lab</p>
   </div></section>
 
-  <section id="dossier"><div class="wrap">
-    <div class="kicker">everything I built · in full</div>
-    <h2 class="sec">The full picture — no clicking required</h2>
-    <p class="sec-sub">The warehouse I built from scratch, and every tool the company built on top of it.</p>
-    <!--BUILD:DOSSIER-->
-  </div></section>
-
+  <!-- 4 · SELECTED WORK (depth) -->
   <section id="work"><div class="wrap">
-    <div class="kicker">audit any claim</div>
-    <h2 class="sec">Every number, with its evidence — and its caveat</h2>
-    <div id="cases"><!--BUILD:CASES--></div>
-  </div></section>
-
-  <section><div class="wrap">
-    <div class="kicker">the stack</div>
-    <h2 class="sec">Named tools, honestly earned</h2>
-    <div id="stack"><!--BUILD:STACK--></div>
+    <div class="kicker">selected work · in full</div>
+    <h2 class="sec">Every project — what I built, how it works, the impact</h2>
+    <p class="sec-sub">No clicking required. The warehouse I built from scratch, and every tool I built on top of it.</p>
+    <!--BUILD:DOSSIER-->
   </div></section>
 
   <footer><div class="wrap">
     <div class="big">Let's build something measurable.</div>
     <div class="links" id="footlinks"><!--BUILD:FOOTLINKS--></div>
-    <div style="margin-top:16px;font-family:var(--mono);font-size:.72rem;color:var(--dim2)">Data &amp; AI · built during my internship at FHI Heat · CS + Data Science, UW–Madison</div>
+    <div class="cred">Data &amp; AI · built during my internship at FHI Heat · CS + Data Science, UW–Madison</div>
   </div></footer>
 
   <script type="module" src="src/app.js"></script>

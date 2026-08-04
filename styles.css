@@ -142,6 +142,27 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 .dz-tk li::before{content:"▸";position:absolute;left:0;color:var(--amber)}
 .answer .dz-tk{margin-top:16px}
 
+/* ===== restructured layout: identity bar + verdict hero + sections ===== */
+.navright{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+.navlinks{display:flex;gap:16px}
+.navlinks a{font-family:var(--mono);font-size:.72rem;color:var(--dim);text-decoration:none;transition:color .12s}
+.navlinks a:hover{color:var(--amber)}
+@media(max-width:640px){.navlinks{display:none}}
+
+.hero2{border-bottom:1px solid var(--line2);background:radial-gradient(1100px 460px at 78% -20%,rgba(240,180,41,.06),transparent 60%)}
+.hero2 .wrap{padding:64px 24px 52px}
+.hero2 .eyebrow{margin-bottom:22px}
+.h1big{font-size:clamp(2.1rem,5.2vw,3.6rem);font-weight:800;line-height:1.05;letter-spacing:-.032em;max-width:20ch}
+.lede{font-size:1.06rem;line-height:1.62;color:var(--dim);max-width:70ch;margin-top:20px}
+.hero2 .tldr-stats{margin-top:28px}
+.hero2 .cta{margin-top:30px}
+
+#skills .stackgrid{margin-top:8px}
+#system .graphwrap{margin-bottom:22px}
+#system .bar{margin-top:10px}
+#work .dz-group:first-of-type{margin-top:8px}
+.cred{margin-top:16px;font-family:var(--mono);font-size:.72rem;color:var(--dim2)}
+
 /* AUDIT CASE STUDY */
 .case{border:1px solid var(--line);border-radius:14px;background:#0c0f14;overflow:hidden;margin-bottom:16px}
 .case .top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer}

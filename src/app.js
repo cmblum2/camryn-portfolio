@@ -1,6 +1,6 @@
 import * as wh from './warehouse.js';
 import { route, plan } from './engine.js';
-import { renderAnswer, renderStack, renderCaseStudies } from './render.js';
+import { renderAnswer, renderStack } from './render.js';
 import { buildGraph } from './graph.js';
 import { loadStatus, renderStatus } from './status.js';
 import { orderForLens } from './lens.js';
@@ -66,7 +66,6 @@ async function init() {
     if (g) { fire(g.dataset.id); document.getElementById('out').scrollIntoView({ behavior: 'smooth' }); }
   });
 
-  document.getElementById('cases').innerHTML = renderCaseStudies(wh.caseStudies, currentLens);
   document.getElementById('stack').innerHTML = renderStack(wh.stack);
   const l = wh.links;
   document.getElementById('footlinks').innerHTML =

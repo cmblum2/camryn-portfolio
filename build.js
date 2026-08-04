@@ -44,20 +44,22 @@ const headHtml = `<meta property="og:title" content="Camryn Blum — I built FHI
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
 
-// ---------- TL;DR band ----------
-const tldrHtml = `<section class="tldr"><div class="wrap">
-  <div class="tldr-lead"><strong>I built FHI Heat's data warehouse from scratch — then most of the tools that ran on top of it.</strong>
-  Five disconnected systems — ERP, Amazon, TikTok Shop, Shopify, and shipping — unified into one SQL source
-  of truth with nightly ingestion. On that foundation I built an ML creator-discovery system, an ad-spend
-  decision engine (100% out-of-sample accuracy), an n8n automation, and the executive dashboard leadership
-  ran on.</div>
+// ---------- Hero thesis (lede paragraph + stat strip; sits inside the hero) ----------
+const thesisHtml = `<p class="lede">Five disconnected systems — ERP, Amazon, TikTok Shop, Shopify, and shipping —
+  unified into one SQL source of truth with nightly ingestion. On that foundation I built an ML
+  creator-discovery system, an ad-spend decision engine (100% out-of-sample accuracy), an n8n automation,
+  and the executive dashboard leadership ran on.</p>
   <div class="tldr-stats">
     <div><b>1</b><span>data warehouse, built from scratch</span></div>
     <div><b>5</b><span>source systems unified into it</span></div>
     <div><b>${builtOnCount}</b><span>tools I built on top of it</span></div>
     <div><b>100%</b><span>out-of-sample decision accuracy</span></div>
-  </div>
-</div></section>`;
+  </div>`;
+
+const navLinksHtml = `<a href="${esc(wh.links.github)}" target="_blank" rel="noopener">GitHub</a>`
+  + `<a href="${esc(wh.links.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`
+  + `<a href="${esc(wh.links.resume)}" target="_blank" rel="noopener">Résumé</a>`
+  + `<a href="mailto:${esc(wh.links.email)}">Email</a>`;
 
 // ---------- Dossier (all entries, always visible) ----------
 function article(e) {
@@ -89,17 +91,7 @@ const dossierHtml = [
   group('Live & tooling', ['deploy']),
 ].join('\n');
 
-// ---------- Fallback sections (also prerendered) ----------
-const casesHtml = wh.caseStudies.map(c => `
-  <div class="case">
-    <div class="top"><span class="claim">${esc(c.claim)}</span><span class="val">${esc(c.value)}</span></div>
-    <div class="body">
-      <div class="row"><div class="lab">Method</div><div class="txt">${esc(c.method)}</div></div>
-      <div class="row"><div class="lab">Result</div><div class="txt">${esc(c.result)}</div></div>
-      <div class="row caveat"><div class="lab">Caveat</div><div class="txt">${esc(c.caveat)}</div></div>
-    </div>
-  </div>`).join('');
-
+// ---------- Skills / stack (prerendered) ----------
 const stackHtml = `<div class="stackgrid">${wh.stack.map(col =>
   `<div class="scol"><h4>${esc(col.group)}</h4>${col.items.map(i => `<div>${esc(i)}</div>`).join('')}</div>`).join('')}</div>`;
 
@@ -115,10 +107,10 @@ const graphHtml = buildGraph(wh.entries, { sources: wh.sources, groups: wh.graph
 let html = await readFile(new URL('./template.html', import.meta.url), 'utf8');
 html = html
   .replace('<!--BUILD:HEAD-->', headHtml)
-  .replace('<!--BUILD:TLDR-->', tldrHtml)
+  .replace('<!--BUILD:NAVLINKS-->', navLinksHtml)
+  .replace('<!--BUILD:THESIS-->', thesisHtml)
   .replace('<!--BUILD:GRAPH-->', graphHtml)
   .replace('<!--BUILD:DOSSIER-->', dossierHtml)
-  .replace('<!--BUILD:CASES-->', casesHtml)
   .replace('<!--BUILD:STACK-->', stackHtml)
   .replace('<!--BUILD:FOOTLINKS-->', footHtml);
 
