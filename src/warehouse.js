@@ -6,9 +6,12 @@ export const sources = ['Shopify', 'Amazon', 'Amazon Vendor', 'Amazon Ads', 'Tik
 
 // Production projects that ran on the warehouse, grouped by business function (right side of the graph).
 export const graphGroups = [
-  { key: 'finance', label: 'the sale · finance', ids: ['sell', 'fbt'] },
-  { key: 'growth', label: 'affiliate growth engine', ids: ['discovery', 'engine', 'n8n'] },
-  { key: 'bi', label: 'exec visibility', ids: ['dashboard'] },
+  { key: 'finance', label: 'the sale · finance', ids: ['sell', 'fbt'],
+    blurb: 'Warehouse-powered finance calls — a diligence reconciliation and a build-vs-buy decision.' },
+  { key: 'growth', label: 'affiliate growth engine', ids: ['discovery', 'engine', 'n8n'], chain: true,
+    blurb: 'One end-to-end system, three parts: discovery finds & scores creators → the decision engine calls scale / cut → n8n alerts on every change.' },
+  { key: 'bi', label: 'exec visibility', ids: ['dashboard'],
+    blurb: 'The decision surface leadership ran on, over the warehouse.' },
   // Public rebuilds modeled on the SAME warehouse (synthetic data) — connected, but dashed to
   // mark them as shareable rebuilds rather than production systems.
   { key: 'rebuild', label: 'public rebuilds · modeled on the warehouse', ids: ['nl2sql', 'dbt'], dashed: true },
@@ -50,7 +53,7 @@ export const entries = [
     ],
     lineage: ['per-SKU rate-card simulation', 'natural experiment on shipping speed', 'recommend NO → cost avoided'], hot: 0,
     links: [] },
-  { id: 'discovery', root: 'warehouse', group: 'growth', label: 'creator intel', lenses: ['AI', 'ML'],
+  { id: 'discovery', root: 'warehouse', group: 'growth', label: 'creator intel', step: '① find', lenses: ['AI', 'ML'],
     keywords: ['discovery', 'creator', 'scrape', 'scraper', 'comment', 'buy-intent', 'buy intent', 'prospect', 'outreach', 'affiliate', 'bot-block', 'machine learning', 'ml system'],
     viz: 'funnel',
     plan: "SELECT creator, buy_intent FROM scraped_comments ORDER BY buy_intent DESC → outreach list",
@@ -73,6 +76,7 @@ export const entries = [
     headline: 'Affiliate ad-spend decision engine',
     narrative: "The engine that told FHI's affiliate managers what to do: which creators to send product to, and which TikTok GMV Max campaign to scale, cut, or tune — grounded in real margin, guardrailed, and causally validated. A deterministic rules layer makes every call (ROAS vs. margin breakeven; creator rank vs. eligibility); an LLM only narrates the verdict and cites the evidence. Shipped and in use (a live page + a weekly one-click report).",
     skills: ['LLM agents (LangGraph)', 'RAG (Chroma)', 'Causal inference (DiD)', 'Unit economics', 'Out-of-sample backtest'],
+    step: '② decide',
     tech: [
       "Architecture — three live sources (a 138K-creator roster, the SQL warehouse, and scraped comment text) → a deterministic decision layer (plain SQL + pandas: campaign ROAS vs. margin breakeven → cut/tune/scale; creator rank + eligibility → sample) → a RAG layer that explains each verdict and cites its evidence. 'Code decides, the LLM narrates' — the 138K creators stay in SQL and JOIN at answer time; only comments are embedded (MiniLM → Chroma).",
       "Two validations, not one — (1) campaign decisions: an out-of-sample backtest (recompute every verdict from pre-cutoff data, measure realized outcomes after, no look-ahead) hit 100% profitable/unprofitable classification across four cutoff windows — the 'keep' side rested on few campaigns, so I lean on the robust 'stop' side. (2) creator sampling: a matched-control difference-in-differences (each seeded creator vs. comparable un-sampled creators) gave rank↔lift Spearman ≈ −0.58, ~77% of sampled creators showing positive lift.",
@@ -80,7 +84,7 @@ export const entries = [
     ],
     lineage: ['SQL warehouse', 'LangGraph decision engine', 'out-of-sample dollar backtest'], hot: 1,
     links: [['Repo (synthetic rebuild)', 'https://github.com/cmblum2/creator-insight-assistant'], ['Live demo', 'https://creator-insight-assistant.onrender.com']] },
-  { id: 'n8n', root: 'warehouse', group: 'growth', label: 'n8n alerts', lenses: ['BI', 'AI'],
+  { id: 'n8n', root: 'warehouse', group: 'growth', label: 'n8n alerts', step: '③ alert', lenses: ['BI', 'AI'],
     keywords: ['n8n', 'workflow', 'automation', 'alert', 'no-code', 'low-code', 'watchdog', 'slack', 'discord', 'rpa'],
     viz: 'flow-n8n',
     plan: "ON schedule → diff(state) → IF changed → POST alert(Slack)",

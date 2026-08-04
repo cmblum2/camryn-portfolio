@@ -85,10 +85,11 @@ function article(e) {
   const skills = (e.skills && e.skills.length)
     ? `<div class="dz-sk">${e.skills.map(s => `<span>${esc(s)}</span>`).join('')}</div>`
     : '';
+  const step = e.step ? `<span class="dz-step">${esc(e.step)}</span>` : '';
   return `<article class="dz${viz ? ' has-viz' : ''}">
     ${viz ? `<div class="dz-viz">${viz}</div>` : ''}
     <div class="dz-body">
-      <div class="dz-h"><h3>${esc(e.headline)}</h3><span class="dz-m">${esc(e.metric)}</span></div>
+      <div class="dz-h"><h3>${step}${esc(e.headline)}</h3><span class="dz-m">${esc(e.metric)}</span></div>
       <div class="dz-sub">${esc(e.mlabel)}</div>
       <p class="dz-n">${esc(e.narrative)}</p>
       ${tech}
@@ -98,14 +99,15 @@ function article(e) {
     </div>
   </article>`;
 }
-function group(title, ids, note) {
+function group(title, ids, note, blurb) {
   const arts = ids.map(id => byId[id]).filter(Boolean).map(article).join('');
   if (!arts) return '';
-  return `<div class="dz-group"><div class="dz-gh">${esc(title)}${note ? ` <span class="dz-note">${esc(note)}</span>` : ''}</div>${arts}</div>`;
+  const b = blurb ? `<div class="dz-gblurb">${esc(blurb)}</div>` : '';
+  return `<div class="dz-group"><div class="dz-gh">${esc(title)}${note ? ` <span class="dz-note">${esc(note)}</span>` : ''}</div>${b}${arts}</div>`;
 }
 const dossierHtml = [
   group('The foundation — built from scratch', ['warehouse']),
-  ...wh.graphGroups.map(g => group(g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '')),
+  ...wh.graphGroups.map(g => group(g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '', g.blurb)),
   group('A separate, ongoing engagement · People and Robots Lab × Kamp Lab (UW–Madison)', wh.beyondIds, '(ongoing · co-authoring voice AI · NIH R01 scored highly)'),
   group('Live & tooling', ['deploy']),
 ].join('\n');

@@ -27,15 +27,25 @@ export function buildGraph(entries, opts = {}) {
     const gy = Math.round(gTop + gi * gGap);
     const labelColor = g.dashed ? '#8aa0c0' : '#f0b429';
     grpLabels += `<text x="590" y="${gy - 22}" ${MONO(10)} fill="${labelColor}" letter-spacing="1">${esc(g.label)}</text>`;
+    const xs = [];
     g.ids.forEach((id, j) => {
       const e = byId[id]; if (!e) return;
       const x = 612 + j * 155, y = gy;
+      xs.push(x);
       const edge = g.dashed
         ? `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#33405c" stroke-width="1" stroke-dasharray="4 4"/>`
         : `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#232a34" stroke-width="1"/>`;
       prodEdges += edge;
       prodNodes += projNode(x, y, id, e.label || id, null, g.dashed);
     });
+    // a chained group is one connected pipeline — link its nodes left→right with amber arrows
+    if (g.chain) {
+      for (let k = 0; k < xs.length - 1; k++) {
+        const mx = (xs[k] + xs[k + 1]) / 2;
+        prodEdges += `<line x1="${xs[k] + 9}" y1="${gy}" x2="${xs[k + 1] - 9}" y2="${gy}" stroke="#f0b429" stroke-width="1.3"/>`;
+        prodNodes += `<text x="${mx}" y="${gy + 3.5}" text-anchor="middle" ${MONO(9)} fill="#f0b429">▸</text>`;
+      }
+    }
   });
 
   // warehouse root
