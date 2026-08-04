@@ -2,7 +2,7 @@
 export const LENSES = ['AI', 'ML', 'BI', 'IB'];
 
 // Sources I connected into the warehouse (shown feeding in on the lineage graph).
-export const sources = ['Shopify', 'TikTok Shop', 'TikTok Ads', 'Amazon', 'Amazon Vendor', 'Amazon Ads', 'SAP', 'ShipStation', 'Attentive', 'Euka'];
+export const sources = ['Shopify', 'Amazon', 'Amazon Vendor', 'Amazon Ads', 'TikTok Shop', 'TikTok Ads', 'Meta', 'Google Ads', 'GA4', 'GSC', 'GMC', 'SAP', 'ShipStation', 'Attentive', 'Euka'];
 
 // Production projects that ran on the warehouse, grouped by business function (right side of the graph).
 export const graphGroups = [
@@ -161,17 +161,17 @@ export const entries = [
   { id: 'warehouse', root: 'warehouse', label: 'warehouse', lenses: ['BI', 'IB'],
     keywords: ['warehouse', 'data', 'pipeline', 'erp', 'source', 'database', 'backbone', 'infrastructure', 'ingestion', 'etl', 'from scratch'],
     viz: 'fanin',
-    plan: "SELECT * FROM (shopify, tiktok_shop+ads, amazon_seller+vendor+ads, sap, shipstation, attentive, euka) → conformed_schema",
-    metric: '10+ systems → 1', mlabel: 'unified warehouse, built from scratch',
+    plan: "SELECT * FROM (shopify, amazon_seller/vendor/ads, tiktok_shop/ads, meta, google_ads/ga4/gsc/gmc, sap, shipstation, attentive, euka) → conformed_schema",
+    metric: '15+ systems → 1', mlabel: 'unified warehouse, built from scratch',
     headline: 'Multi-source data warehouse — built from scratch',
-    narrative: "Designed and built FHI Heat's SQL warehouse from zero: nightly Python ETL unifying ~10 systems across the US & EU (Shopify, TikTok Shop & Ads, Amazon Seller/Vendor/Ads, SAP, ShipStation, Attentive, Euka) into one conformed dimensional schema — the single source of truth every downstream tool ran on.",
-    skills: ['Data engineering', 'ETL', 'Dimensional modeling', 'SQL', 'Python', 'API integration'],
+    narrative: "Designed and built FHI Heat's SQL warehouse from zero — a dbt-style raw → staging → marts model (hundreds of tables/views) unifying ~15 source systems across the US & EU via nightly Python ETL: every commerce, ad, search, ERP, fulfillment, and marketing platform the company runs on. The single source of truth every downstream tool queries.",
+    skills: ['Data engineering', 'ETL / ELT', 'Dimensional modeling', 'Data integration', 'SQL', 'Python'],
     tech: [
-      "Ingestion — ~10 source systems across the US & EU, each via its own API: Shopify (DTC), TikTok Shop Seller Center + TikTok Ads, Amazon Seller Central, Vendor Central + Amazon Ads, SAP (ERP), ShipStation, and the marketing tools Attentive and Euka.",
-      "Schema — normalized them into one dimensional model: fact tables for orders, order-lines, ad spend, and shipments, conformed to shared dimensions (SKU/product, channel, marketplace & region, date, customer), with cross-marketplace SKU mapping and USD/EUR normalization.",
-      "Reliability — incremental, idempotent upserts, schema-drift handling, and de-duplication of intraday API snapshots so no sale or ad-spend is double-counted; Seller vs Vendor and ads vs orders reconciled into one revenue-and-margin view.",
+      "Sources (~15, US & EU) — commerce: Shopify, Amazon (Seller + Vendor Central), TikTok Shop. Ads: Amazon, TikTok, Meta, Google. Search & analytics: Google Analytics (GA4), Search Console, Merchant Center. Plus SAP B1 (ERP), ShipStation, Attentive, and Euka — each via its own API.",
+      "Schema — a dbt-style raw → staging → marts model (hundreds of tables/views) conforming every source onto shared dimensions: a cross-marketplace SKU bridge, channel, marketplace & region, date, and customer; USD/EUR normalization; nightly Python ETL.",
+      "Reliability & reconciliation — incremental idempotent upserts, schema-drift handling, snapshot de-duplication, and data-quality checks; cross-source reconciliation (ad spend across platforms vs. the SAP ledger, Amazon Seller vs. Vendor, GA4 vs. orders) into one revenue-and-margin view.",
     ],
-    lineage: ['Shopify · TikTok · Amazon · SAP · ShipStation · Attentive · Euka', 'nightly Python ingestion', 'one conformed SQL schema'], hot: 2,
+    lineage: ['Shopify · Amazon · TikTok · Meta · Google · SAP · ShipStation · Attentive · Euka', 'nightly Python ETL · raw→staging→marts', 'one conformed SQL schema'], hot: 2,
     links: [] },
   { id: 'stack', root: 'meta', label: 'stack', lenses: ['AI', 'ML', 'BI', 'IB'],
     keywords: ['stack', 'tool', 'tech', 'skill', 'langgraph', 'power bi', 'powerbi', 'python', 'languages'],

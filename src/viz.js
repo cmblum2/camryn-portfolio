@@ -38,7 +38,7 @@ function fanin() {
   s += ln(162, hubY, 246, 50) + ln(162, hubY, 246, 98);
   s += `<rect x="250" y="38" width="84" height="26" rx="4" fill="none" stroke="${A}"/>` + tx(292, 49, 'facts', 7, INK, 'middle') + tx(292, 59, 'orders·spend·ship', 6, DIM, 'middle');
   s += `<rect x="250" y="86" width="84" height="26" rx="4" fill="none" stroke="${LINE}"/>` + tx(292, 97, 'dims', 7, INK, 'middle') + tx(292, 107, 'sku·channel·date', 6, DIM, 'middle');
-  s += tx(18, 146, '~10 systems · US + EU', 7, DIM) + tx(hubX, 100, 'warehouse', 7, INK, 'middle');
+  s += tx(18, 146, '~15 systems · US + EU', 7, DIM) + tx(hubX, 100, 'warehouse', 7, INK, 'middle');
   return s;
 }
 

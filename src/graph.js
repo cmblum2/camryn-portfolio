@@ -9,14 +9,14 @@ export function buildGraph(entries, opts = {}) {
   const W = 1000, H = 560, whX = 330, whY = 190;
 
   // sources column (left) → warehouse
-  const sx = 104, sTop = 70, sSpan = 260;
+  const sx = 104, sTop = 46, sSpan = 300;
   const sGap = sources.length > 1 ? sSpan / (sources.length - 1) : 0;
   let srcEdges = '', srcNodes = '';
   sources.forEach((s, i) => {
     const y = Math.round(sTop + i * sGap);
     srcEdges += `<line x1="${sx}" y1="${y}" x2="${whX}" y2="${whY}" stroke="#1f2630" stroke-width="1"/>`;
-    srcNodes += `<g><circle cx="${sx}" cy="${y}" r="5" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/>`
-      + `<text x="${sx - 13}" y="${y + 3}" text-anchor="end" ${MONO(9)} fill="#8a909a">${esc(s)}</text></g>`;
+    srcNodes += `<g><circle cx="${sx}" cy="${y}" r="4" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/>`
+      + `<text x="${sx - 12}" y="${y + 3}" text-anchor="end" ${MONO(8)} fill="#8a909a">${esc(s)}</text></g>`;
   });
 
   // projects (right), grouped by business function; a `dashed` group = public rebuilds of the warehouse
