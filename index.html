@@ -3,9 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Camryn Blum — Query my career warehouse</title>
-<meta name="description" content="An agentic portfolio: query my career warehouse. AI · ML · BI · IB — CS + Data Science, UW–Madison.">
+<title>Camryn Blum — I built FHI Heat's data warehouse from scratch</title>
+<meta name="description" content="Camryn Blum built FHI Heat's data warehouse from scratch — unifying ERP, Amazon, TikTok Shop, Shopify, and shipping — then built the ML and BI tools the company ran on it: a creator-discovery ML system, an ad-spend decision engine (100% out-of-sample backtest), an n8n automation, and an executive BI dashboard. CS + Data Science, UW–Madison.">
+<meta name="keywords" content="data warehouse, SQL, Python, ETL, LangGraph, RAG, dbt, BigQuery, Power BI, DAX, machine learning, web scraping, causal inference, out-of-sample backtest, BI dashboard, n8n, Next.js, FHI Heat, data engineering intern">
 <link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Camryn Blum — I built FHI Heat's data warehouse from scratch">
+<meta property="og:description" content="Built FHI Heat's data warehouse from scratch, then the ML & BI tools the company ran on it. CS + Data Science, UW–Madison.">
+<meta property="og:type" content="profile">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Camryn Blum","jobTitle":"Data & AI Intern","email":"mailto:camrynblum@gmail.com","alumniOf":{"@type":"CollegeOrUniversity","name":"University of Wisconsin–Madison"},"worksFor":{"@type":"Organization","name":"FHI Heat"},"knowsAbout":["data warehousing","SQL","Python","ETL","LangGraph","RAG","RAGAS","dbt","BigQuery","Power BI","DAX","machine learning","web scraping","causal inference","out-of-sample backtesting","BI dashboards","n8n","Next.js"],"description":"Built FHI Heat's multi-platform data warehouse from scratch (ERP, Amazon, TikTok Shop, Shopify, shipping unified into one SQL source of truth), then built the ML and BI tools the company ran on top of it: a creator-discovery ML system, an ad-spend decision engine with out-of-sample backtesting, an n8n alerting workflow, and an executive BI dashboard.","sameAs":["https://github.com/cmblum2"],"hasPart":[{"@type":"CreativeWork","name":"I reconciled a six-figure books discrepancy to 0.5%.","abstract":"six-figure discrepancy, reconciled","description":"Leadership flagged a large payment to a shipping carrier — a six-figure sum with no matching shipping labels, which looked like it could be missing money. I loaded 570K+ shipping records into the warehouse and reconciled them line-by-line against the ERP payment ledger. The cause turned out to be a bookkeeping mis-classification: two prepaid carrier wallets had both been booked under a single vendor. Counting both, the spend matched payments to within ~0.5% — nothing was missing, and the correction was booked."},{"@type":"CreativeWork","name":"A build-vs-buy call I won by saying no.","abstract":"build-vs-buy, backed by data","description":"TikTok pitched its Fulfilled-by-TikTok program. Instead of guessing, I simulated the exact rate card per-SKU across thousands of real orders, and ran a natural experiment showing customers didn't actually punish slower shipping. The numbers said don't switch — so I recommended against it, avoiding a five-figure annual cost. The harder part was making the case that the default 'yes' was the wrong one."},{"@type":"CreativeWork","name":"The affiliate ML system that found who to actually pay.","abstract":"creator-discovery ML system","description":"To grow the affiliate program you first have to find the right creators. I built a resilient TikTok scraper that mines public comment data at scale (rotating strategies so it keeps working past bot-blocking), then a machine-learning model that scores each creator's buy-intent from that comment signal. Instead of guessing who to recruit, outreach could target the highest-intent prospects first — the discovery layer that feeds the whole affiliate pipeline."},{"@type":"CreativeWork","name":"An ad-spend decision engine that proved its own calls.","abstract":"out-of-sample decision accuracy","description":"Once creators were live, affiliate ad spend was scattered across dozens of TikTok campaigns with no read on which were actually profitable after margin. I built a decision engine — LangGraph + Claude over the SQL warehouse — that scores each campaign against its own margin breakeven and returns a verdict: scale, tune, or cut. Then I backtested it out of sample: recompute every verdict from data before a cutoff date, then check what actually happened after (no look-ahead). Across four cutoff windows it hit 100% profitable/unprofitable accuracy — every campaign it flagged to stop was genuinely below breakeven, and the ones it called healthy were solidly profitable. (Honest caveat: the 'keep' side rested on few campaigns, so I lean on the robust 'stop' side.) A public, synthetic-data rebuild is linked below."},{"@type":"CreativeWork","name":"A no-code watchdog on the affiliate system.","abstract":"no-code automation (n8n)","description":"The ML outputs are only useful if someone acts on them. I built an n8n workflow that runs on a schedule, watches the affiliate system for changes — new high-intent creators surfaced, campaign verdicts flipping, metric drift — diffs each run against the last, and posts an alert to Slack only when something actually changed. Low-code glue that turns the models' output into action without anyone babysitting a dashboard."},{"@type":"CreativeWork","name":"The exec dashboard leadership ran the business on.","abstract":"exec BI dashboard (Next.js)","description":"I built the executive BI dashboard — Next.js on top of the warehouse — that leadership used for daily revenue, margin, and channel views. While building it I caught a data bug nobody had noticed: an upstream table was counting each intraday API snapshot as a separate sale, which would have overstated a channel's revenue. I traced it and rebuilt the metric from deduplicated source data. The same dashboard also surfaced a major revenue channel that DTC-only reports had been missing."},{"@type":"CreativeWork","name":"Ask-Your-Warehouse: plain English → governed SQL.","abstract":"governed NL→SQL agent · live","description":"This is a public, shareable rebuild modeled on my own warehouse — same schema and roles, synthetic data — so the skill is visible without exposing anything private. A LangGraph agent turns a plain-English question into SQL, runs it, and answers with a chart, with real guardrails (not just prompts): it only writes read-only SELECTs, self-repairs when a query errors, and enforces role-based access at three layers — a CEO sees everything, an intern sees no dollar amounts. Ask it to 'delete all orders' and it refuses. Five role logins in the live demo."},{"@type":"CreativeWork","name":"A retail warehouse, modeled the analytics-engineering way.","abstract":"dbt + BigQuery, CI-tested","description":"A public, shareable rebuild that models my warehouse in dbt on BigQuery (synthetic data) — the named-stack, reproducible version of the modeling I did by hand in production. raw → staging → marts (fact and dimension tables), with data tests (not-null, unique, relationships), auto-generated lineage docs, and GitHub Actions CI that runs the full build + all tests on every push."},{"@type":"CreativeWork","name":"A hands-free voice AI for the lab bench (SteMy).","abstract":"realtime voice agent · co-authored","description":"Different domain entirely — this ran nowhere near the commerce warehouse. I co-authored the voice layer of a research lab's AI assistant so a scientist can run workflows hands-free at the bench. It uses OpenAI's Realtime API for full-duplex speech (it can listen and talk at once), calls backend functions by voice, and gates any real action behind a spoken confirmation so it can't act on a mishearing. My part was the voice and tool-dispatch flow."},{"@type":"CreativeWork","name":"The data warehouse the whole business ran on.","abstract":"unified warehouse, built from scratch","description":"This is the foundation everything else stands on. At FHI Heat I built a multi-platform data warehouse from scratch in SQL, pulling five siloed systems — the ERP, the Amazon and TikTok Shop marketplaces, the Shopify DTC store, and the shipping carrier — into one place, refreshed by nightly Python jobs. Before it, every question meant stitching exports together by hand. After, the whole team could query sales, margin, inventory, and fulfillment from a single source of truth — and every project to the right of it on the graph is something I built on top."}]}}</script>
 </head>
 <body>
   <div class="nav"><div class="wrap">
@@ -23,36 +29,148 @@
     </div>
     <div class="bar">
       <span class="car">&gt;</span>
-      <input id="q" placeholder="e.g. how did you help sell a company?" autocomplete="off">
+      <input id="q" placeholder="e.g. how did you build the data warehouse?" autocomplete="off">
       <button id="go">Query</button>
     </div>
     <div class="chips" id="chips"></div>
     <div id="out"></div>
   </div>
 
+  <section class="tldr"><div class="wrap">
+  <div class="tldr-lead"><strong>I built FHI Heat's data warehouse from scratch — by myself.</strong>
+  Five disconnected systems — ERP, Amazon, TikTok Shop, Shopify, and shipping — unified into one SQL source
+  of truth with nightly ingestion. Then the company built its tooling on top of my database: an ML
+  creator-discovery system, an ad-spend decision engine (100% out-of-sample accuracy), an n8n automation,
+  and the executive dashboard leadership ran on.</div>
+  <div class="tldr-stats">
+    <div><b>1</b><span>data warehouse, built solo from scratch</span></div>
+    <div><b>5</b><span>source systems unified into it</span></div>
+    <div><b>6</b><span>tools the company built on it</span></div>
+    <div><b>100%</b><span>out-of-sample decision accuracy</span></div>
+  </div>
+</div></section>
+
   <section id="graph-sec"><div class="wrap">
     <div class="kicker">the build · FHI Heat</div>
     <h2 class="sec">I built the warehouse from scratch — everything ran on it</h2>
     <p class="sec-sub">At <strong>FHI Heat</strong> — the professional hair-tools brand — the company's data lived in five disconnected systems. I unified them into one warehouse with nightly ingestion, then built the tools the team actually ran on top of it — from an ML system that found which creators to recruit, to a decision engine that scored their spend, to the exec dashboard leadership watched. Click any node to query it.</p>
-    <div class="graphwrap" id="graph"></div>
+    <div class="graphwrap" id="graph"><svg viewBox="0 0 1000 560" style="width:100%;height:auto;display:block" role="img" aria-label="Career lineage: sources to warehouse to projects"><line x1="104" y1="70" x2="330" y2="190" stroke="#1f2630" stroke-width="1"/><line x1="104" y1="135" x2="330" y2="190" stroke="#1f2630" stroke-width="1"/><line x1="104" y1="200" x2="330" y2="190" stroke="#1f2630" stroke-width="1"/><line x1="104" y1="265" x2="330" y2="190" stroke="#1f2630" stroke-width="1"/><line x1="104" y1="330" x2="330" y2="190" stroke="#1f2630" stroke-width="1"/><line x1="330" y1="190" x2="612" y2="60" stroke="#232a34" stroke-width="1"/><line x1="330" y1="190" x2="767" y2="60" stroke="#232a34" stroke-width="1"/><line x1="330" y1="190" x2="612" y2="167" stroke="#232a34" stroke-width="1"/><line x1="330" y1="190" x2="767" y2="167" stroke="#232a34" stroke-width="1"/><line x1="330" y1="190" x2="922" y2="167" stroke="#232a34" stroke-width="1"/><line x1="330" y1="190" x2="612" y2="273" stroke="#232a34" stroke-width="1"/><line x1="330" y1="190" x2="612" y2="380" stroke="#33405c" stroke-width="1" stroke-dasharray="4 4"/><line x1="330" y1="190" x2="767" y2="380" stroke="#33405c" stroke-width="1" stroke-dasharray="4 4"/><text x="590" y="38" font-family="'JetBrains Mono',monospace" font-size="10" fill="#f0b429" letter-spacing="1">the sale · finance</text><text x="590" y="145" font-family="'JetBrains Mono',monospace" font-size="10" fill="#f0b429" letter-spacing="1">affiliate growth engine</text><text x="590" y="251" font-family="'JetBrains Mono',monospace" font-size="10" fill="#f0b429" letter-spacing="1">exec visibility</text><text x="590" y="358" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8aa0c0" letter-spacing="1">public rebuilds · modeled on the warehouse</text><g><circle cx="104" cy="70" r="5" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/><text x="91" y="73" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9" fill="#8a909a">ERP</text></g><g><circle cx="104" cy="135" r="5" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/><text x="91" y="138" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9" fill="#8a909a">Amazon</text></g><g><circle cx="104" cy="200" r="5" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/><text x="91" y="203" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9" fill="#8a909a">TikTok Shop</text></g><g><circle cx="104" cy="265" r="5" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/><text x="91" y="268" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9" fill="#8a909a">Shopify</text></g><g><circle cx="104" cy="330" r="5" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/><text x="91" y="333" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="9" fill="#8a909a">Shipping</text></g><g class="gnode" data-id="sell" style="cursor:pointer"><circle cx="612" cy="60" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="612" y="80" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">the audit</text></g><g class="gnode" data-id="fbt" style="cursor:pointer"><circle cx="767" cy="60" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="767" y="80" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">build-vs-buy</text></g><g class="gnode" data-id="discovery" style="cursor:pointer"><circle cx="612" cy="167" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="612" y="187" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">creator ML</text></g><g class="gnode" data-id="engine" style="cursor:pointer"><circle cx="767" cy="167" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="767" y="187" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">decision engine</text></g><g class="gnode" data-id="n8n" style="cursor:pointer"><circle cx="922" cy="167" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="922" y="187" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">n8n alerts</text></g><g class="gnode" data-id="dashboard" style="cursor:pointer"><circle cx="612" cy="273" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="612" y="293" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">exec dash</text></g><g class="gnode" data-id="nl2sql" style="cursor:pointer"><circle cx="612" cy="380" r="8" fill="#0e1219" stroke="#6b86b0" stroke-width="1.5"/><text x="612" y="400" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">NL→SQL</text></g><g class="gnode" data-id="dbt" style="cursor:pointer"><circle cx="767" cy="380" r="8" fill="#0e1219" stroke="#6b86b0" stroke-width="1.5"/><text x="767" y="400" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">dbt</text></g><g class="gnode" data-id="warehouse" style="cursor:pointer"><circle cx="330" cy="190" r="18" fill="#f0b429"/><text x="330" y="227" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#7c828c">warehouse · built from scratch</text></g><line x1="60" y1="452" x2="940" y2="452" stroke="#1a1f27" stroke-width="1" stroke-dasharray="4 4"/><text x="60" y="442" font-family="'JetBrains Mono',monospace" font-size="10" fill="#7c828c" letter-spacing="1">ANOTHER DOMAIN — SEPARATE FROM THE WAREHOUSE</text><g class="gnode" data-id="voice" style="cursor:pointer"><circle cx="190" cy="510" r="8" fill="#0e1219" stroke="#f0b429" stroke-width="1.5"/><text x="190" y="530" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="9.5" fill="#c9cdd4">voice AI</text><text x="190" y="543" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8" fill="#6b7280">research lab</text></g></svg></div>
     <p class="graph-cap">left: the sources I connected · center: the warehouse · right: what it powered (solid) plus public rebuilds modeled on the same warehouse (dashed) · below the line: the one genuinely separate project — SteMy voice AI for a research lab</p>
   </div></section>
 
+  <section id="dossier"><div class="wrap">
+    <div class="kicker">everything I built · in full</div>
+    <h2 class="sec">The full picture — no clicking required</h2>
+    <p class="sec-sub">The warehouse I built from scratch, and every tool the company built on top of it.</p>
+    <div class="dz-group"><div class="dz-gh">The foundation — built from scratch</div><article class="dz">
+    <div class="dz-h"><h3>The data warehouse the whole business ran on.</h3><span class="dz-m">5 sources → 1</span></div>
+    <div class="dz-sub">unified warehouse, built from scratch</div>
+    <p class="dz-n">This is the foundation everything else stands on. At FHI Heat I built a multi-platform data warehouse from scratch in SQL, pulling five siloed systems — the ERP, the Amazon and TikTok Shop marketplaces, the Shopify DTC store, and the shipping carrier — into one place, refreshed by nightly Python jobs. Before it, every question meant stitching exports together by hand. After, the whole team could query sales, margin, inventory, and fulfillment from a single source of truth — and every project to the right of it on the graph is something I built on top.</p>
+    <div class="dz-l">ERP + Amazon + TikTok Shop + Shopify + shipping <span class="arw">→</span> nightly Python ingestion <span class="arw">→</span> one SQL warehouse</div>
+    
+  </article></div>
+<div class="dz-group"><div class="dz-gh">the sale · finance</div><article class="dz">
+    <div class="dz-h"><h3>I reconciled a six-figure books discrepancy to 0.5%.</h3><span class="dz-m">→ 0.5% variance</span></div>
+    <div class="dz-sub">six-figure discrepancy, reconciled</div>
+    <p class="dz-n">Leadership flagged a large payment to a shipping carrier — a six-figure sum with no matching shipping labels, which looked like it could be missing money. I loaded 570K+ shipping records into the warehouse and reconciled them line-by-line against the ERP payment ledger. The cause turned out to be a bookkeeping mis-classification: two prepaid carrier wallets had both been booked under a single vendor. Counting both, the spend matched payments to within ~0.5% — nothing was missing, and the correction was booked.</p>
+    <div class="dz-l">570K shipping records <span class="arw">→</span> reconciled vs ERP ledger <span class="arw">→</span> six-figure gap → bookkeeping fix</div>
+    
+  </article><article class="dz">
+    <div class="dz-h"><h3>A build-vs-buy call I won by saying no.</h3><span class="dz-m">a firm "no"</span></div>
+    <div class="dz-sub">build-vs-buy, backed by data</div>
+    <p class="dz-n">TikTok pitched its Fulfilled-by-TikTok program. Instead of guessing, I simulated the exact rate card per-SKU across thousands of real orders, and ran a natural experiment showing customers didn't actually punish slower shipping. The numbers said don't switch — so I recommended against it, avoiding a five-figure annual cost. The harder part was making the case that the default 'yes' was the wrong one.</p>
+    <div class="dz-l">per-SKU rate-card simulation <span class="arw">→</span> natural experiment on shipping speed <span class="arw">→</span> recommend NO → cost avoided</div>
+    
+  </article></div>
+<div class="dz-group"><div class="dz-gh">affiliate growth engine</div><article class="dz">
+    <div class="dz-h"><h3>The affiliate ML system that found who to actually pay.</h3><span class="dz-m">buy-intent ranked</span></div>
+    <div class="dz-sub">creator-discovery ML system</div>
+    <p class="dz-n">To grow the affiliate program you first have to find the right creators. I built a resilient TikTok scraper that mines public comment data at scale (rotating strategies so it keeps working past bot-blocking), then a machine-learning model that scores each creator's buy-intent from that comment signal. Instead of guessing who to recruit, outreach could target the highest-intent prospects first — the discovery layer that feeds the whole affiliate pipeline.</p>
+    <div class="dz-l">scrape public TikTok comments (bot-resilient) <span class="arw">→</span> buy-intent ML scorer <span class="arw">→</span> ranked creator prospects → outreach</div>
+    
+  </article><article class="dz">
+    <div class="dz-h"><h3>An ad-spend decision engine that proved its own calls.</h3><span class="dz-m">100% OOS</span></div>
+    <div class="dz-sub">out-of-sample decision accuracy</div>
+    <p class="dz-n">Once creators were live, affiliate ad spend was scattered across dozens of TikTok campaigns with no read on which were actually profitable after margin. I built a decision engine — LangGraph + Claude over the SQL warehouse — that scores each campaign against its own margin breakeven and returns a verdict: scale, tune, or cut. Then I backtested it out of sample: recompute every verdict from data before a cutoff date, then check what actually happened after (no look-ahead). Across four cutoff windows it hit 100% profitable/unprofitable accuracy — every campaign it flagged to stop was genuinely below breakeven, and the ones it called healthy were solidly profitable. (Honest caveat: the 'keep' side rested on few campaigns, so I lean on the robust 'stop' side.) A public, synthetic-data rebuild is linked below.</p>
+    <div class="dz-l">SQL warehouse <span class="arw">→</span> LangGraph decision engine <span class="arw">→</span> out-of-sample dollar backtest</div>
+    <div class="dz-l2"><a href="https://github.com/cmblum2/creator-insight-assistant" target="_blank" rel="noopener">Repo (synthetic rebuild) →</a><a href="https://creator-insight-assistant.onrender.com" target="_blank" rel="noopener">Live demo →</a></div>
+  </article><article class="dz">
+    <div class="dz-h"><h3>A no-code watchdog on the affiliate system.</h3><span class="dz-m">auto-alerts</span></div>
+    <div class="dz-sub">no-code automation (n8n)</div>
+    <p class="dz-n">The ML outputs are only useful if someone acts on them. I built an n8n workflow that runs on a schedule, watches the affiliate system for changes — new high-intent creators surfaced, campaign verdicts flipping, metric drift — diffs each run against the last, and posts an alert to Slack only when something actually changed. Low-code glue that turns the models' output into action without anyone babysitting a dashboard.</p>
+    <div class="dz-l">scheduled trigger <span class="arw">→</span> diff vs last run <span class="arw">→</span> alert on change → Slack</div>
+    
+  </article></div>
+<div class="dz-group"><div class="dz-gh">exec visibility</div><article class="dz">
+    <div class="dz-h"><h3>The exec dashboard leadership ran the business on.</h3><span class="dz-m">caught a data bug</span></div>
+    <div class="dz-sub">exec BI dashboard (Next.js)</div>
+    <p class="dz-n">I built the executive BI dashboard — Next.js on top of the warehouse — that leadership used for daily revenue, margin, and channel views. While building it I caught a data bug nobody had noticed: an upstream table was counting each intraday API snapshot as a separate sale, which would have overstated a channel's revenue. I traced it and rebuilt the metric from deduplicated source data. The same dashboard also surfaced a major revenue channel that DTC-only reports had been missing.</p>
+    <div class="dz-l">warehouse <span class="arw">→</span> Next.js exec dashboard <span class="arw">→</span> caught an upstream revenue-inflation bug</div>
+    
+  </article></div>
+<div class="dz-group"><div class="dz-gh">public rebuilds · modeled on the warehouse <span class="dz-note">(synthetic rebuilds, public)</span></div><article class="dz">
+    <div class="dz-h"><h3>Ask-Your-Warehouse: plain English → governed SQL.</h3><span class="dz-m">5 roles</span></div>
+    <div class="dz-sub">governed NL→SQL agent · live</div>
+    <p class="dz-n">This is a public, shareable rebuild modeled on my own warehouse — same schema and roles, synthetic data — so the skill is visible without exposing anything private. A LangGraph agent turns a plain-English question into SQL, runs it, and answers with a chart, with real guardrails (not just prompts): it only writes read-only SELECTs, self-repairs when a query errors, and enforces role-based access at three layers — a CEO sees everything, an intern sees no dollar amounts. Ask it to 'delete all orders' and it refuses. Five role logins in the live demo.</p>
+    <div class="dz-l">plain-English question <span class="arw">→</span> LangGraph → guardrailed read-only SQL <span class="arw">→</span> chart + answer, or a refusal</div>
+    <div class="dz-l2"><a href="https://github.com/cmblum2/nl2sql-agent" target="_blank" rel="noopener">Repo →</a><a href="https://ask-your-warehouse.streamlit.app" target="_blank" rel="noopener">Live demo →</a></div>
+  </article><article class="dz">
+    <div class="dz-h"><h3>A retail warehouse, modeled the analytics-engineering way.</h3><span class="dz-m">22/22 tests</span></div>
+    <div class="dz-sub">dbt + BigQuery, CI-tested</div>
+    <p class="dz-n">A public, shareable rebuild that models my warehouse in dbt on BigQuery (synthetic data) — the named-stack, reproducible version of the modeling I did by hand in production. raw → staging → marts (fact and dimension tables), with data tests (not-null, unique, relationships), auto-generated lineage docs, and GitHub Actions CI that runs the full build + all tests on every push.</p>
+    <div class="dz-l">raw seeds <span class="arw">→</span> staging → marts (dbt) <span class="arw">→</span> 22 data tests, green in CI</div>
+    <div class="dz-l2"><a href="https://github.com/cmblum2/retail-analytics-dbt" target="_blank" rel="noopener">Repo →</a></div>
+  </article></div>
+<div class="dz-group"><div class="dz-gh">Another domain (separate from the warehouse) <span class="dz-note">(SteMy — a research lab)</span></div><article class="dz">
+    <div class="dz-h"><h3>A hands-free voice AI for the lab bench (SteMy).</h3><span class="dz-m">full-duplex</span></div>
+    <div class="dz-sub">realtime voice agent · co-authored</div>
+    <p class="dz-n">Different domain entirely — this ran nowhere near the commerce warehouse. I co-authored the voice layer of a research lab's AI assistant so a scientist can run workflows hands-free at the bench. It uses OpenAI's Realtime API for full-duplex speech (it can listen and talk at once), calls backend functions by voice, and gates any real action behind a spoken confirmation so it can't act on a mishearing. My part was the voice and tool-dispatch flow.</p>
+    <div class="dz-l">OpenAI Realtime (full-duplex speech) <span class="arw">→</span> voice → backend function calls <span class="arw">→</span> spoken confirmation before any action</div>
+    
+  </article></div>
+<div class="dz-group"><div class="dz-gh">Live &amp; tooling</div><article class="dz">
+    <div class="dz-h"><h3>What is actually running right now.</h3><span class="dz-m">3 public apps</span></div>
+    <div class="dz-sub">deployed + reachable</div>
+    <p class="dz-n">The NL→SQL agent (Streamlit), the decision-engine rebuild (Render), and the dbt warehouse with green CI — plus this site. The status bar at the top pings them every 30 minutes; the free-tier demos nap when idle and wake on the first click (~30s), which is why they sometimes show amber.</p>
+    <div class="dz-l">Streamlit · NL→SQL agent <span class="arw">→</span> Render · decision-engine rebuild <span class="arw">→</span> GitHub Actions · dbt CI</div>
+    <div class="dz-l2"><a href="https://ask-your-warehouse.streamlit.app" target="_blank" rel="noopener">NL→SQL →</a><a href="https://creator-insight-assistant.onrender.com" target="_blank" rel="noopener">Decision engine →</a></div>
+  </article></div>
+  </div></section>
+
   <section id="work"><div class="wrap">
-    <div class="kicker">or just browse · audit any claim</div>
+    <div class="kicker">audit any claim</div>
     <h2 class="sec">Every number, with its evidence — and its caveat</h2>
-    <div id="cases"></div>
+    <div id="cases">
+  <div class="case">
+    <div class="top"><span class="claim">The AI engine's calls, validated out of sample</span><span class="val">100% OOS</span></div>
+    <div class="body">
+      <div class="row"><div class="lab">Method</div><div class="txt">Recompute every campaign verdict from data before a cutoff, then measure what actually happened after — same decision function as the live engine, no look-ahead.</div></div>
+      <div class="row"><div class="lab">Result</div><div class="txt">100% profitable/unprofitable accuracy across four cutoff windows — every campaign it flagged to stop was genuinely below breakeven, and the ones it called healthy were solidly profitable.</div></div>
+      <div class="row caveat"><div class="lab">Caveat</div><div class="txt">The "keep" side rested on few campaigns in-window — I present it as directional and lean on the robust "stop" side. Downstream adoption was above my intern access.</div></div>
+    </div>
+  </div>
+  <div class="case">
+    <div class="top"><span class="claim">A six-figure books discrepancy — reconciled to 0.5%</span><span class="val">0.5% var</span></div>
+    <div class="body">
+      <div class="row"><div class="lab">Method</div><div class="txt">Pulled 570K+ shipping records into the warehouse I built and reconciled them line-by-line against the ERP payment ledger.</div></div>
+      <div class="row"><div class="lab">Result</div><div class="txt">Proved it was a bookkeeping mis-classification, not missing money: two prepaid carrier wallets booked under one vendor. Counting both, spend matched payments to within ~0.5%; the correction was booked.</div></div>
+      <div class="row caveat"><div class="lab">Caveat</div><div class="txt">I built the warehouse and did the reconciliation myself; some downstream financials were confidential above my intern access.</div></div>
+    </div>
+  </div></div>
   </div></section>
 
   <section><div class="wrap">
     <div class="kicker">the stack</div>
     <h2 class="sec">Named tools, honestly earned</h2>
-    <div id="stack"></div>
+    <div id="stack"><div class="stackgrid"><div class="scol"><h4>AI / LLM</h4><div>LangGraph agents</div><div>RAG · Chroma</div><div>RAGAS eval</div><div>Claude / OpenAI</div></div><div class="scol"><h4>Data / Eng</h4><div>dbt · BigQuery</div><div>Python · SQL</div><div>web scraping</div><div>Docker · CI/CD</div></div><div class="scol"><h4>ML / Rigor</h4><div>buy-intent scoring</div><div>causal inference</div><div>OOS backtesting</div><div>guardrails · eval</div></div><div class="scol"><h4>BI / Automation</h4><div>Power BI · DAX</div><div>Next.js dashboards</div><div>n8n workflows</div><div>star-schema modeling</div></div></div></div>
   </div></section>
 
   <footer><div class="wrap">
     <div class="big">Let's build something measurable.</div>
-    <div class="links" id="footlinks"></div>
+    <div class="links" id="footlinks"><a href="https://github.com/cmblum2" target="_blank" rel="noopener">GitHub</a>
+  <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+  <a href="#" target="_blank" rel="noopener">Résumé ↓</a>
+  <a href="mailto:camrynblum@gmail.com">camrynblum@gmail.com</a></div>
     <div style="margin-top:16px;font-family:var(--mono);font-size:.72rem;color:var(--dim2)">Data &amp; AI · built during my internship at FHI Heat · CS + Data Science, UW–Madison</div>
   </div></footer>
 

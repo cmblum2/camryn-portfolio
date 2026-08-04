@@ -109,6 +109,31 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 .gnode:hover circle{stroke:#fff}
 .gnode:hover text{fill:#fff}
 
+/* ===== TL;DR band (10-second read) ===== */
+.tldr{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);background:#0b0e13}
+.tldr .wrap{padding:34px 24px}
+.tldr-lead{font-size:1.06rem;line-height:1.6;color:#dfe2e7;max-width:78ch}
+.tldr-lead strong{color:#fff}
+.tldr-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+@media(max-width:760px){.tldr-stats{grid-template-columns:1fr 1fr}}
+.tldr-stats div{border-left:2px solid var(--amber);padding-left:12px}
+.tldr-stats b{font-family:var(--mono);font-size:1.7rem;font-weight:600;color:#fff;display:block;letter-spacing:-.02em}
+.tldr-stats span{font-size:.76rem;color:var(--dim);line-height:1.4;display:block;margin-top:4px}
+
+/* ===== Dossier (all projects, always visible) ===== */
+.dz-group{margin-top:30px}
+.dz-gh{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);padding-bottom:10px;border-bottom:1px solid var(--line2);margin-bottom:16px}
+.dz-gh .dz-note{color:var(--dim2);text-transform:none;letter-spacing:0}
+.dz{border:1px solid var(--line);border-radius:12px;background:#0c0f14;padding:18px 20px;margin-bottom:14px}
+.dz-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.dz-h h3{font-size:1.05rem;letter-spacing:-.01em}
+.dz-m{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--green);white-space:nowrap}
+.dz-sub{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim2);margin-top:4px}
+.dz-n{font-size:.92rem;line-height:1.6;color:#cfd3d9;margin-top:12px}
+.dz-l{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:14px;font-family:var(--mono);font-size:.72rem;color:#aab0ba}
+.dz-l2{display:flex;gap:16px;margin-top:12px}
+.dz-l2 a{font-family:var(--mono);font-size:.74rem;color:var(--amber);text-decoration:none}
+
 /* AUDIT CASE STUDY */
 .case{border:1px solid var(--line);border-radius:14px;background:#0c0f14;overflow:hidden;margin-bottom:16px}
 .case .top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer}

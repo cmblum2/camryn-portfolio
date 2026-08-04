@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camryn Blum — I built FHI Heat's data warehouse from scratch</title>
+<meta name="description" content="Camryn Blum built FHI Heat's data warehouse from scratch — unifying ERP, Amazon, TikTok Shop, Shopify, and shipping — then built the ML and BI tools the company ran on it: a creator-discovery ML system, an ad-spend decision engine (100% out-of-sample backtest), an n8n automation, and an executive BI dashboard. CS + Data Science, UW–Madison.">
+<meta name="keywords" content="data warehouse, SQL, Python, ETL, LangGraph, RAG, dbt, BigQuery, Power BI, DAX, machine learning, web scraping, causal inference, out-of-sample backtest, BI dashboard, n8n, Next.js, FHI Heat, data engineering intern">
+<link rel="stylesheet" href="styles.css">
+<!--BUILD:HEAD-->
+</head>
+<body>
+  <div class="nav"><div class="wrap">
+    <div class="brand">CAMRYN<i>.</i>BLUM</div>
+    <div class="sys" id="sys"><span class="sysdim">checking systems…</span></div>
+  </div></div>
+
+  <div class="wrap stage">
+    <div class="eyebrow">an agent over my career — not a brochure</div>
+    <h1>Ask my career <span>warehouse.</span></h1>
+    <p class="p">Everything I've built runs on one warehouse. Query it — the engine assembles the answer.</p>
+    <div class="lens" id="lens">
+      <button data-lens="AI" class="on">AI</button><button data-lens="ML">ML</button>
+      <button data-lens="BI">BI</button><button data-lens="IB">IB</button>
+    </div>
+    <div class="bar">
+      <span class="car">&gt;</span>
+      <input id="q" placeholder="e.g. how did you build the data warehouse?" autocomplete="off">
+      <button id="go">Query</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div id="out"></div>
+  </div>
+
+  <!--BUILD:TLDR-->
+
+  <section id="graph-sec"><div class="wrap">
+    <div class="kicker">the build · FHI Heat</div>
+    <h2 class="sec">I built the warehouse from scratch — everything ran on it</h2>
+    <p class="sec-sub">At <strong>FHI Heat</strong> — the professional hair-tools brand — the company's data lived in five disconnected systems. I unified them into one warehouse with nightly ingestion, then built the tools the team actually ran on top of it — from an ML system that found which creators to recruit, to a decision engine that scored their spend, to the exec dashboard leadership watched. Click any node to query it.</p>
+    <div class="graphwrap" id="graph"><!--BUILD:GRAPH--></div>
+    <p class="graph-cap">left: the sources I connected · center: the warehouse · right: what it powered (solid) plus public rebuilds modeled on the same warehouse (dashed) · below the line: the one genuinely separate project — SteMy voice AI for a research lab</p>
+  </div></section>
+
+  <section id="dossier"><div class="wrap">
+    <div class="kicker">everything I built · in full</div>
+    <h2 class="sec">The full picture — no clicking required</h2>
+    <p class="sec-sub">The warehouse I built from scratch, and every tool the company built on top of it.</p>
+    <!--BUILD:DOSSIER-->
+  </div></section>
+
+  <section id="work"><div class="wrap">
+    <div class="kicker">audit any claim</div>
+    <h2 class="sec">Every number, with its evidence — and its caveat</h2>
+    <div id="cases"><!--BUILD:CASES--></div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="kicker">the stack</div>
+    <h2 class="sec">Named tools, honestly earned</h2>
+    <div id="stack"><!--BUILD:STACK--></div>
+  </div></section>
+
+  <footer><div class="wrap">
+    <div class="big">Let's build something measurable.</div>
+    <div class="links" id="footlinks"><!--BUILD:FOOTLINKS--></div>
+    <div style="margin-top:16px;font-family:var(--mono);font-size:.72rem;color:var(--dim2)">Data &amp; AI · built during my internship at FHI Heat · CS + Data Science, UW–Madison</div>
+  </div></footer>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
