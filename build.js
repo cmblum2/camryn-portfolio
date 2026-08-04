@@ -65,10 +65,14 @@ function article(e) {
   const links = (e.links && e.links.length)
     ? `<div class="dz-l2">${e.links.map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} →</a>`).join('')}</div>`
     : '';
+  const tech = (e.tech && e.tech.length)
+    ? `<div class="dz-tk"><div class="dz-tkh">How it works</div><ul>${e.tech.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`
+    : '';
   return `<article class="dz">
     <div class="dz-h"><h3>${esc(e.headline)}</h3><span class="dz-m">${esc(e.metric)}</span></div>
     <div class="dz-sub">${esc(e.mlabel)}</div>
     <p class="dz-n">${esc(e.narrative)}</p>
+    ${tech}
     <div class="dz-l">${lineage}</div>
     ${links}
   </article>`;

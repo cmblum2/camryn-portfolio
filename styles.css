@@ -134,6 +134,14 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 .dz-l2{display:flex;gap:16px;margin-top:12px}
 .dz-l2 a{font-family:var(--mono);font-size:.74rem;color:var(--amber);text-decoration:none}
 
+/* "How it works" technical breakdown (dossier + query card) */
+.dz-tk{margin-top:14px;padding-top:14px;border-top:1px solid var(--line2)}
+.dz-tkh{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.09em;color:var(--dim2);margin-bottom:9px}
+.dz-tk ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin:0;padding:0}
+.dz-tk li{position:relative;padding-left:17px;font-size:.85rem;line-height:1.55;color:#c2c7cf}
+.dz-tk li::before{content:"▸";position:absolute;left:0;color:var(--amber)}
+.answer .dz-tk{margin-top:16px}
+
 /* AUDIT CASE STUDY */
 .case{border:1px solid var(--line);border-radius:14px;background:#0c0f14;overflow:hidden;margin-bottom:16px}
 .case .top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer}
