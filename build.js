@@ -28,6 +28,11 @@ const jsonLd = {
     email: 'mailto:' + wh.links.email,
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Wisconsin–Madison' },
     worksFor: { '@type': 'Organization', name: 'FHI Heat' },
+    affiliation: [
+      { '@type': 'Organization', name: 'FHI Heat' },
+      { '@type': 'ResearchOrganization', name: 'People and Robots Lab, University of Wisconsin–Madison' },
+      { '@type': 'ResearchOrganization', name: 'Kamp Lab, University of Wisconsin–Madison' },
+    ],
     knowsAbout: ['data warehousing', 'data integration', 'ETL / ELT', 'dimensional modeling', 'SQL', 'Python',
       'Shopify', 'Amazon Seller Central', 'Amazon Vendor Central', 'Amazon Ads', 'TikTok Shop', 'TikTok Ads',
       'SAP', 'ShipStation', 'Attentive', 'Euka', 'LangGraph', 'RAG', 'RAGAS', 'dbt', 'BigQuery', 'Power BI',
@@ -98,7 +103,7 @@ function group(title, ids, note) {
 const dossierHtml = [
   group('The foundation — built from scratch', ['warehouse']),
   ...wh.graphGroups.map(g => group(g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '')),
-  group('A separate engagement · UW–Madison research lab', wh.beyondIds, '(co-authored · voice AI · not FHI)'),
+  group('A separate engagement · People and Robots Lab × Kamp Lab (UW–Madison)', wh.beyondIds, '(co-authored voice AI · NIH R01 — scored highly)'),
   group('Live & tooling', ['deploy']),
 ].join('\n');
 

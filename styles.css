@@ -170,6 +170,17 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 #work .dz-group:first-of-type{margin-top:8px}
 .cred{margin-top:16px;font-family:var(--mono);font-size:.72rem;color:var(--dim2)}
 
+/* Experience strip — two engagements */
+.exp{border-bottom:1px solid var(--line2)}
+.exp .wrap{padding:26px 24px}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+@media(max-width:720px){.exp-grid{grid-template-columns:1fr}}
+.exp-item{border-left:2px solid var(--amber);padding-left:15px}
+.exp-org{font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+.exp-role{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--dim2);margin-top:4px}
+.exp-what{font-size:.9rem;color:var(--dim);margin-top:9px;line-height:1.5}
+.exp-badge{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;color:var(--green);border:1px solid #1c3a26;background:#0e1c14;border-radius:6px;padding:3px 8px}
+
 /* AUDIT CASE STUDY */
 .case{border:1px solid var(--line);border-radius:14px;background:#0c0f14;overflow:hidden;margin-bottom:16px}
 .case .top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;cursor:pointer}

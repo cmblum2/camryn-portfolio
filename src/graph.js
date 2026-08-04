@@ -46,7 +46,7 @@ export function buildGraph(entries, opts = {}) {
   // detached band: a genuinely separate domain (research-lab voice AI), not on the warehouse
   const bandY = 452;
   let beyondSvg = `<line x1="60" y1="${bandY}" x2="940" y2="${bandY}" stroke="#1a1f27" stroke-width="1" stroke-dasharray="4 4"/>`
-    + `<text x="60" y="${bandY - 10}" ${MONO(10)} fill="#7c828c" letter-spacing="1">A SEPARATE ENGAGEMENT — UW RESEARCH LAB · VOICE AI (NOT FHI)</text>`;
+    + `<text x="60" y="${bandY - 10}" ${MONO(10)} fill="#7c828c" letter-spacing="1">SEPARATE ENGAGEMENT — UW PEOPLE &amp; ROBOTS × KAMP LAB · VOICE AI · NIH R01</text>`;
   beyond.forEach((id, i) => {
     const e = byId[id]; if (!e) return;
     const x = 190 + i * 230, y = bandY + 58;
