@@ -137,6 +137,9 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 .dz-l{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:14px;font-family:var(--mono);font-size:.72rem;color:#aab0ba}
 .dz-l2{display:flex;gap:16px;margin-top:12px}
 .dz-l2 a{font-family:var(--mono);font-size:.74rem;color:var(--amber);text-decoration:none}
+.dz-sk{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.dz-sk span{font-family:var(--mono);font-size:.66rem;color:#c9cdd4;border:1px solid var(--line);background:#0e1319;border-radius:999px;padding:4px 10px}
+.answer .dz-sk{margin-top:14px}
 
 /* "How it works" technical breakdown (dossier + query card) */
 .dz-tk{margin-top:14px;padding-top:14px;border-top:1px solid var(--line2)}

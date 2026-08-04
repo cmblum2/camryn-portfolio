@@ -81,6 +81,7 @@ export function renderAnswer(entry, planText) {
       <div class="narr">${esc(entry.narrative)}</div>
       ${(entry.tech && entry.tech.length) ? `<div class="dz-tk"><div class="dz-tkh">How it works</div><ul>${entry.tech.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>` : ''}
       <div class="lineage"><span class="ll">data lineage</span>${nodes}</div>
+      ${(entry.skills && entry.skills.length) ? `<div class="dz-sk">${entry.skills.map(s => `<span>${esc(s)}</span>`).join('')}</div>` : ''}
       ${links}
     </div>`;
 }

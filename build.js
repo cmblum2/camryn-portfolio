@@ -74,6 +74,9 @@ function article(e) {
     ? `<div class="dz-tk"><div class="dz-tkh">How it works</div><ul>${e.tech.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`
     : '';
   const viz = renderViz(e);
+  const skills = (e.skills && e.skills.length)
+    ? `<div class="dz-sk">${e.skills.map(s => `<span>${esc(s)}</span>`).join('')}</div>`
+    : '';
   return `<article class="dz${viz ? ' has-viz' : ''}">
     ${viz ? `<div class="dz-viz">${viz}</div>` : ''}
     <div class="dz-body">
@@ -82,6 +85,7 @@ function article(e) {
       <p class="dz-n">${esc(e.narrative)}</p>
       ${tech}
       <div class="dz-l">${lineage}</div>
+      ${skills}
       ${links}
     </div>
   </article>`;
