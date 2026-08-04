@@ -1,4 +1,5 @@
 import { orderForLens, taglineForLens } from './lens.js';
+import { renderViz } from './viz.js';
 
 const esc = (s) => String(s)
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
@@ -76,6 +77,7 @@ export function renderAnswer(entry, planText) {
       <div class="metric">${esc(entry.metric)}</div>
       <div class="mlabel">${esc(entry.mlabel)}</div>
       <h3>${esc(entry.headline)}</h3>
+      ${renderViz(entry) ? `<div class="ans-viz">${renderViz(entry)}</div>` : ''}
       <div class="narr">${esc(entry.narrative)}</div>
       ${(entry.tech && entry.tech.length) ? `<div class="dz-tk"><div class="dz-tkh">How it works</div><ul>${entry.tech.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>` : ''}
       <div class="lineage"><span class="ll">data lineage</span>${nodes}</div>

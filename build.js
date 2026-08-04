@@ -5,6 +5,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import * as wh from './src/warehouse.js';
 import { buildGraph } from './src/graph.js';
+import { renderViz } from './src/viz.js';
 
 const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const byId = Object.fromEntries(wh.entries.map(e => [e.id, e]));
@@ -70,13 +71,17 @@ function article(e) {
   const tech = (e.tech && e.tech.length)
     ? `<div class="dz-tk"><div class="dz-tkh">How it works</div><ul>${e.tech.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`
     : '';
-  return `<article class="dz">
-    <div class="dz-h"><h3>${esc(e.headline)}</h3><span class="dz-m">${esc(e.metric)}</span></div>
-    <div class="dz-sub">${esc(e.mlabel)}</div>
-    <p class="dz-n">${esc(e.narrative)}</p>
-    ${tech}
-    <div class="dz-l">${lineage}</div>
-    ${links}
+  const viz = renderViz(e);
+  return `<article class="dz${viz ? ' has-viz' : ''}">
+    ${viz ? `<div class="dz-viz">${viz}</div>` : ''}
+    <div class="dz-body">
+      <div class="dz-h"><h3>${esc(e.headline)}</h3><span class="dz-m">${esc(e.metric)}</span></div>
+      <div class="dz-sub">${esc(e.mlabel)}</div>
+      <p class="dz-n">${esc(e.narrative)}</p>
+      ${tech}
+      <div class="dz-l">${lineage}</div>
+      ${links}
+    </div>
   </article>`;
 }
 function group(title, ids, note) {
