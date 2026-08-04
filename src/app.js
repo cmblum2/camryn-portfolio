@@ -78,6 +78,7 @@ async function init() {
   const systems = await loadStatus((u) => fetch(u, { cache: 'no-store' }));
   document.getElementById('sys').innerHTML = renderStatus(systems);
 
-  setTimeout(() => fire('sell'), 450);
+  // autoplay the foundation story (warehouse built from scratch) — reinforces the thesis
+  setTimeout(() => fire('warehouse'), 450);
 }
 document.addEventListener('DOMContentLoaded', init);
