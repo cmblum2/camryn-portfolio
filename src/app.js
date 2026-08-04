@@ -10,7 +10,7 @@ let currentLens = 'AI';
 let timer = null;
 
 const QUESTION = {
-  sell: 'how did you help sell a company?',
+  sell: 'how did you catch a books discrepancy?',
   engine: 'prove your AI made the right calls',
   dashboard: 'what did the exec dashboard do?',
   nl2sql: 'what is the NL→SQL agent?',

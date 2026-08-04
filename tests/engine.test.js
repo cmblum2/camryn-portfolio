@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { route, plan } from '../src/engine.js';
 import { entries } from '../src/warehouse.js';
 
-test('route matches the acquisition story', () => {
-  assert.equal(route('how did you help sell a company?', entries).id, 'sell');
+test('route matches the reconciliation story', () => {
+  assert.equal(route('how did you reconcile the books discrepancy?', entries).id, 'sell');
 });
 test('route matches the decision engine / backtest story', () => {
   assert.equal(route('can you prove your AI was right?', entries).id, 'engine');
