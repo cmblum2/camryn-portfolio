@@ -69,7 +69,7 @@ function funnel() {
   // scraped comments (left)
   s += `<rect x="22" y="46" width="52" height="66" rx="3" fill="rgba(240,180,41,.06)" stroke="${LINE}"/>` + tx(48, 82, 'comments', 6.5, DIM, 'middle') + tx(48, 128, '(scraped)', 6, DIM, 'middle');
   // buy-intent ML model
-  s += ln(74, 79, 104, 79) + `<rect x="104" y="60" width="72" height="38" rx="4" fill="rgba(240,180,41,.09)" stroke="${A}"/>` + tx(140, 76, 'buy-intent', 7, INK, 'middle') + tx(140, 88, 'ML scorer', 6.5, DIM, 'middle');
+  s += ln(74, 79, 104, 79) + `<rect x="104" y="60" width="72" height="38" rx="4" fill="rgba(240,180,41,.09)" stroke="${A}"/>` + tx(140, 76, 'buy-intent', 7, INK, 'middle') + tx(140, 88, 'lexicon', 6.5, DIM, 'middle');
   s += ln(176, 79, 204, 79);
   // ranked creators (descending score bars, top = amber)
   const bw = [62, 48, 36, 26];
