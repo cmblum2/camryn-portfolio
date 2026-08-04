@@ -19,6 +19,7 @@ export function renderViz(e) {
     bars: [bars, 'Build-vs-buy cost comparison — recommended against'],
     funnel: [funnel, 'Creator discovery funnel: comments to features to ranked prospects'],
     curve: [curve, 'Out-of-sample backtest accuracy across four cutoffs'],
+    breakeven: [breakeven, 'Campaigns scored against margin breakeven — scale above, cut below — then backtested'],
     dag: [dag, 'dbt DAG: raw to staging to marts with data tests'],
     tiles: [tiles, 'Executive BI dashboard with a data-quality bug caught'],
     'flow-n8n': [() => flow(['trigger', 'diff', 'alert'], { from: 1, label: 'no change' }), 'n8n workflow: scheduled trigger, diff, alert only on change'],
@@ -64,13 +65,28 @@ function bars() {
 }
 
 function funnel() {
-  let s = tx(170, 18, 'scrape → feature → rank', 8, DIM, 'middle');
-  s += `<rect x="26" y="44" width="70" height="76" rx="3" fill="rgba(240,180,41,.06)" stroke="${LINE}"/>` + tx(61, 86, 'comments', 7, DIM, 'middle');
-  s += `<rect x="120" y="56" width="64" height="52" rx="3" fill="rgba(240,180,41,.08)" stroke="${LINE}"/>` + tx(152, 85, 'features', 7, DIM, 'middle');
-  s += `<rect x="208" y="66" width="56" height="32" rx="3" fill="rgba(240,180,41,.12)" stroke="${A}"/>` + tx(236, 85, 'scored', 7, INK, 'middle');
-  s += ln(96, 82, 120, 82) + ln(184, 82, 208, 82);
-  const oy = [58, 78, 98];
-  s += oy.map((y, i) => dot(300, y, 4.5, i === 0 ? A : DIM)).join('') + tx(300, 118, 'ranked', 7, DIM, 'end');
+  let s = tx(170, 18, 'comments → buy-intent → rank', 8, DIM, 'middle');
+  // scraped comments (left)
+  s += `<rect x="22" y="46" width="52" height="66" rx="3" fill="rgba(240,180,41,.06)" stroke="${LINE}"/>` + tx(48, 82, 'comments', 6.5, DIM, 'middle') + tx(48, 128, '(scraped)', 6, DIM, 'middle');
+  // buy-intent ML model
+  s += ln(74, 79, 104, 79) + `<rect x="104" y="60" width="72" height="38" rx="4" fill="rgba(240,180,41,.09)" stroke="${A}"/>` + tx(140, 76, 'buy-intent', 7, INK, 'middle') + tx(140, 88, 'ML scorer', 6.5, DIM, 'middle');
+  s += ln(176, 79, 204, 79);
+  // ranked creators (descending score bars, top = amber)
+  const bw = [62, 48, 36, 26];
+  bw.forEach((w, i) => { const y = 52 + i * 17; s += `<rect x="216" y="${y}" width="${w}" height="10" rx="2" fill="${i === 0 ? 'rgba(240,180,41,.18)' : 'none'}" stroke="${i === 0 ? A : DIM}"/>` + dot(210, y + 5, 2.6, i === 0 ? A : DIM); });
+  s += tx(216, 138, 'ranked creators', 7, DIM);
+  return s;
+}
+
+function breakeven() {
+  let s = tx(170, 16, 'realized ROAS vs margin breakeven', 8, DIM, 'middle');
+  s += `<line x1="34" y1="80" x2="286" y2="80" stroke="${A}" stroke-width="1" stroke-dasharray="4 3"/>` + tx(300, 83, 'BE', 7, A, 'end');
+  const above = [[54, 52], [86, 62], [120, 46], [214, 58], [252, 64]];
+  const below = [[152, 104], [186, 116], [244, 108], [274, 120]];
+  s += above.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${G}"/>`).join('');
+  s += below.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${RED}"/>`).join('');
+  s += tx(34, 44, 'scale ↑', 7, G) + tx(34, 132, 'cut ↓', 7, RED);
+  s += tx(170, 146, '✓ backtested — 100% correct out-of-sample', 7, G, 'middle');
   return s;
 }
 
@@ -95,12 +111,13 @@ function dag() {
 }
 
 function tiles() {
-  let s = tx(30, 22, 'exec dashboard', 8, DIM);
-  [30, 122, 214].forEach(x => { s += `<rect x="${x}" y="30" width="80" height="30" rx="4" fill="none" stroke="${LINE}"/>` + `<rect x="${x + 10}" y="42" width="34" height="6" rx="3" fill="${A}"/>`; });
-  const bh = [26, 40, 30, 52, 18];
-  bh.forEach((h, i) => { const x = 40 + i * 26; const isBug = i === 3; s += `<rect x="${x}" y="${118 - h}" width="16" height="${h}" rx="2" fill="none" stroke="${isBug ? A : LINE}"/>`; });
-  s += ln(34, 118, 172, 118);
-  s += `<path d="M118 60 l0 30" stroke="${A}" stroke-width="1" stroke-dasharray="2 2"/>` + tx(196, 92, '▲ bug caught', 7.5, A);
+  let s = tx(30, 20, 'exec dashboard · by channel', 8, DIM);
+  ['revenue', 'margin', 'ad spend'].forEach((k, i) => { const x = 30 + i * 100; s += `<rect x="${x}" y="28" width="88" height="26" rx="4" fill="none" stroke="${LINE}"/>` + tx(x + 9, 45, k, 6.5, DIM) + `<rect x="${x + 52}" y="38" width="28" height="6" rx="3" fill="${A}"/>`; });
+  // channel bars — one anomalous spike (a data bug) flagged, the rest normal
+  const bh = [24, 30, 96, 26, 20];
+  bh.forEach((h, i) => { const x = 40 + i * 30; const bug = i === 2; s += `<rect x="${x}" y="${128 - h}" width="18" height="${h}" rx="2" fill="${bug ? 'rgba(255,123,114,.14)' : 'none'}" stroke="${bug ? RED : LINE}"/>`; });
+  s += ln(34, 128, 190, 128);
+  s += tx(206, 68, '⚠ anomaly', 7.5, RED) + tx(206, 80, 'caught + fixed', 7, DIM);
   return s;
 }
 
