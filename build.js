@@ -98,7 +98,7 @@ function group(title, ids, note) {
 const dossierHtml = [
   group('The foundation — built from scratch', ['warehouse']),
   ...wh.graphGroups.map(g => group(g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '')),
-  group('Another domain (separate from the warehouse)', wh.beyondIds, '(SteMy — a research lab)'),
+  group('A separate engagement · UW–Madison research lab', wh.beyondIds, '(co-authored · voice AI · not FHI)'),
   group('Live & tooling', ['deploy']),
 ].join('\n');
 
