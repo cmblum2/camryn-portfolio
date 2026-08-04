@@ -30,11 +30,15 @@ export function renderViz(e) {
 }
 
 function fanin() {
-  const sy = [26, 52, 78, 104, 130];
-  let s = sy.map(y => ln(34, y, 168, 76) + dot(30, y, 3.5, DIM)).join('');
-  s += [52, 76, 100].map(y => ln(182, 76, 302, y) + dot(306, y, 4.5)).join('');
-  s += `<circle cx="168" cy="76" r="13" fill="${A}"/>`;
-  s += tx(30, 146, '5 sources', 7, DIM) + tx(168, 108, 'warehouse', 7.5, INK, 'middle') + tx(306, 128, 'tools', 7, DIM, 'end');
+  const sy = [18, 34, 50, 66, 82, 98, 114, 130];
+  const hubX = 150, hubY = 74;
+  let s = sy.map(y => ln(28, y, hubX, hubY) + dot(24, y, 3, DIM)).join('');
+  s += `<circle cx="${hubX}" cy="${hubY}" r="12" fill="${A}"/>`;
+  // right side = the conformed schema (facts + dimensions)
+  s += ln(162, hubY, 246, 50) + ln(162, hubY, 246, 98);
+  s += `<rect x="250" y="38" width="84" height="26" rx="4" fill="none" stroke="${A}"/>` + tx(292, 49, 'facts', 7, INK, 'middle') + tx(292, 59, 'orders·spend·ship', 6, DIM, 'middle');
+  s += `<rect x="250" y="86" width="84" height="26" rx="4" fill="none" stroke="${LINE}"/>` + tx(292, 97, 'dims', 7, INK, 'middle') + tx(292, 107, 'sku·channel·date', 6, DIM, 'middle');
+  s += tx(18, 146, '~10 systems · US + EU', 7, DIM) + tx(hubX, 100, 'warehouse', 7, INK, 'middle');
   return s;
 }
 

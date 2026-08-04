@@ -28,13 +28,15 @@ const jsonLd = {
     email: 'mailto:' + wh.links.email,
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Wisconsin–Madison' },
     worksFor: { '@type': 'Organization', name: 'FHI Heat' },
-    knowsAbout: ['data warehousing', 'SQL', 'Python', 'ETL', 'LangGraph', 'RAG', 'RAGAS', 'dbt',
-      'BigQuery', 'Power BI', 'DAX', 'machine learning', 'web scraping', 'causal inference',
-      'out-of-sample backtesting', 'BI dashboards', 'n8n', 'Next.js'],
-    description: "Built FHI Heat's multi-platform data warehouse from scratch (ERP, Amazon, TikTok Shop, "
-      + "Shopify, shipping unified into one SQL source of truth), then built most of the tools that ran on "
-      + "top of it: a creator-discovery ML system, an ad-spend decision engine with out-of-sample "
-      + "backtesting, an n8n alerting workflow, and an executive BI dashboard.",
+    knowsAbout: ['data warehousing', 'data integration', 'ETL / ELT', 'dimensional modeling', 'SQL', 'Python',
+      'Shopify', 'Amazon Seller Central', 'Amazon Vendor Central', 'Amazon Ads', 'TikTok Shop', 'TikTok Ads',
+      'SAP', 'ShipStation', 'Attentive', 'Euka', 'LangGraph', 'RAG', 'RAGAS', 'dbt', 'BigQuery', 'Power BI',
+      'DAX', 'machine learning', 'web scraping', 'causal inference', 'out-of-sample backtesting', 'BI dashboards', 'n8n', 'Next.js'],
+    description: "Built FHI Heat's multi-platform data warehouse from scratch — unifying ~10 systems across the "
+      + "US & EU (Shopify, TikTok Shop & Ads, Amazon Seller/Vendor Central & Ads, SAP, ShipStation, Attentive, Euka) "
+      + "into one conformed SQL schema — then built most of the tools that ran on top of it: a creator-discovery "
+      + "ML system, an ad-spend decision engine with out-of-sample backtesting, an n8n alerting workflow, and an "
+      + "executive BI dashboard.",
     sameAs: [wh.links.github].filter(u => u && u !== '#'),
     hasPart: projectsForLd,
   },
@@ -46,13 +48,13 @@ const headHtml = `<meta property="og:title" content="Camryn Blum — I built FHI
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
 
 // ---------- Hero thesis (lede paragraph + stat strip; sits inside the hero) ----------
-const thesisHtml = `<p class="lede">Five disconnected systems — ERP, Amazon, TikTok Shop, Shopify, and shipping —
-  unified into one SQL source of truth with nightly ingestion. On that foundation I built an ML
-  creator-discovery system, an ad-spend decision engine (100% out-of-sample accuracy), an n8n automation,
-  and the executive dashboard leadership ran on.</p>
+const thesisHtml = `<p class="lede">~10 siloed systems across the US &amp; EU — Shopify, TikTok Shop &amp; Ads,
+  Amazon (Seller, Vendor, Ads), SAP, ShipStation, Attentive, Euka — unified into one SQL source of truth
+  with nightly ingestion. On that foundation I built an ML creator-discovery system, an ad-spend decision
+  engine (100% out-of-sample accuracy), an n8n automation, and the executive dashboard leadership ran on.</p>
   <div class="tldr-stats">
     <div><b>1</b><span>data warehouse, built from scratch</span></div>
-    <div><b>5</b><span>source systems unified into it</span></div>
+    <div><b>10+</b><span>systems unified (US &amp; EU)</span></div>
     <div><b>${builtOnCount}</b><span>tools I built on top of it</span></div>
     <div><b>100%</b><span>out-of-sample decision accuracy</span></div>
   </div>`;

@@ -2,7 +2,7 @@
 export const LENSES = ['AI', 'ML', 'BI', 'IB'];
 
 // Sources I connected into the warehouse (shown feeding in on the lineage graph).
-export const sources = ['ERP', 'Amazon', 'TikTok Shop', 'Shopify', 'Shipping'];
+export const sources = ['Shopify', 'TikTok Shop', 'TikTok Ads', 'Amazon', 'Amazon Vendor', 'Amazon Ads', 'SAP', 'ShipStation', 'Attentive', 'Euka'];
 
 // Production projects that ran on the warehouse, grouped by business function (right side of the graph).
 export const graphGroups = [
@@ -149,16 +149,16 @@ export const entries = [
   { id: 'warehouse', root: 'warehouse', label: 'warehouse', lenses: ['BI', 'IB'],
     keywords: ['warehouse', 'data', 'pipeline', 'erp', 'source', 'database', 'backbone', 'infrastructure', 'ingestion', 'etl', 'from scratch'],
     viz: 'fanin',
-    plan: "SELECT * FROM (erp, amazon, tiktok_shop, shopify, shipping) → one_warehouse",
-    metric: '5 sources → 1', mlabel: 'unified warehouse, built from scratch',
+    plan: "SELECT * FROM (shopify, tiktok_shop+ads, amazon_seller+vendor+ads, sap, shipstation, attentive, euka) → conformed_schema",
+    metric: '10+ systems → 1', mlabel: 'unified warehouse, built from scratch',
     headline: 'The data warehouse the whole business ran on.',
-    narrative: "This is the foundation everything else stands on. At FHI Heat I built a multi-platform data warehouse from scratch in SQL, pulling five siloed systems — the ERP, the Amazon and TikTok Shop marketplaces, the Shopify DTC store, and the shipping carrier — into one place, refreshed by nightly Python jobs. Before it, every question meant stitching exports together by hand. After, the whole team could query sales, margin, inventory, and fulfillment from a single source of truth — and every project to the right of it on the graph is something I built on top.",
+    narrative: "This is the foundation everything else stands on. At FHI Heat I built a multi-platform data warehouse from scratch in SQL, unifying ~10 siloed systems across the US and EU — Shopify (DTC), TikTok Shop and Amazon (Seller + Vendor Central) for orders, TikTok Ads and Amazon Ads for spend, SAP (ERP), ShipStation (fulfillment), and Attentive and Euka (marketing) — refreshed by nightly Python jobs. Before it, every question meant stitching exports together by hand. After, the whole team could query orders, ad spend, margin, inventory, and fulfillment from a single source of truth — and every project to the right of it on the graph is something I built on top.",
     tech: [
-      "Ingestion: nightly Python jobs pulling Amazon SP-API, TikTok Shop API, Shopify Admin/GraphQL, the ERP, and the shipping carrier — each with its own schema, IDs, and currencies.",
-      "Modeling: normalized the sources into a unified dimensional schema (order and line-item facts; product, channel, and date dimensions) with cross-marketplace SKU mapping.",
-      "Reliability: incremental, idempotent upserts, schema-drift handling, and de-duplication of intraday API snapshots so the same sale is never double-counted.",
+      "Ingestion — ~10 source systems across the US & EU, each via its own API: Shopify (DTC), TikTok Shop Seller Center + TikTok Ads, Amazon Seller Central, Vendor Central + Amazon Ads, SAP (ERP), ShipStation, and the marketing tools Attentive and Euka.",
+      "Schema — normalized them into one dimensional model: fact tables for orders, order-lines, ad spend, and shipments, conformed to shared dimensions (SKU/product, channel, marketplace & region, date, customer), with cross-marketplace SKU mapping and USD/EUR normalization.",
+      "Reliability — incremental, idempotent upserts, schema-drift handling, and de-duplication of intraday API snapshots so no sale or ad-spend is double-counted; Seller vs Vendor and ads vs orders reconciled into one revenue-and-margin view.",
     ],
-    lineage: ['ERP + Amazon + TikTok Shop + Shopify + shipping', 'nightly Python ingestion', 'one SQL warehouse'], hot: 2,
+    lineage: ['Shopify · TikTok · Amazon · SAP · ShipStation · Attentive · Euka', 'nightly Python ingestion', 'one conformed SQL schema'], hot: 2,
     links: [] },
   { id: 'stack', root: 'meta', label: 'stack', lenses: ['AI', 'ML', 'BI', 'IB'],
     keywords: ['stack', 'tool', 'tech', 'skill', 'langgraph', 'power bi', 'powerbi', 'python', 'languages'],
@@ -196,7 +196,7 @@ export const caseStudies = [
 
 export const stack = [
   { group: 'AI / LLM', items: ['LangGraph agents', 'RAG · Chroma', 'RAGAS eval', 'Claude / OpenAI'] },
-  { group: 'Data / Eng', items: ['dbt · BigQuery', 'Python · SQL', 'web scraping', 'Docker · CI/CD'] },
+  { group: 'Data / Eng', items: ['multi-source ETL', 'dimensional modeling', 'dbt · BigQuery', 'Python · SQL'] },
   { group: 'ML / Rigor', items: ['buy-intent scoring', 'causal inference', 'OOS backtesting', 'guardrails · eval'] },
   { group: 'BI / Automation', items: ['Power BI · DAX', 'Next.js dashboards', 'n8n workflows', 'star-schema modeling'] },
 ];
