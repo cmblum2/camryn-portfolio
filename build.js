@@ -31,8 +31,8 @@ const jsonLd = {
       'BigQuery', 'Power BI', 'DAX', 'machine learning', 'web scraping', 'causal inference',
       'out-of-sample backtesting', 'BI dashboards', 'n8n', 'Next.js'],
     description: "Built FHI Heat's multi-platform data warehouse from scratch (ERP, Amazon, TikTok Shop, "
-      + "Shopify, shipping unified into one SQL source of truth), then built the ML and BI tools the company "
-      + "ran on top of it: a creator-discovery ML system, an ad-spend decision engine with out-of-sample "
+      + "Shopify, shipping unified into one SQL source of truth), then built most of the tools that ran on "
+      + "top of it: a creator-discovery ML system, an ad-spend decision engine with out-of-sample "
       + "backtesting, an n8n alerting workflow, and an executive BI dashboard.",
     sameAs: [wh.links.github].filter(u => u && u !== '#'),
     hasPart: projectsForLd,
@@ -46,15 +46,15 @@ const headHtml = `<meta property="og:title" content="Camryn Blum — I built FHI
 
 // ---------- TL;DR band ----------
 const tldrHtml = `<section class="tldr"><div class="wrap">
-  <div class="tldr-lead"><strong>I built FHI Heat's data warehouse from scratch — by myself.</strong>
+  <div class="tldr-lead"><strong>I built FHI Heat's data warehouse from scratch — then most of the tools that ran on top of it.</strong>
   Five disconnected systems — ERP, Amazon, TikTok Shop, Shopify, and shipping — unified into one SQL source
-  of truth with nightly ingestion. Then the company built its tooling on top of my database: an ML
-  creator-discovery system, an ad-spend decision engine (100% out-of-sample accuracy), an n8n automation,
-  and the executive dashboard leadership ran on.</div>
+  of truth with nightly ingestion. On that foundation I built an ML creator-discovery system, an ad-spend
+  decision engine (100% out-of-sample accuracy), an n8n automation, and the executive dashboard leadership
+  ran on.</div>
   <div class="tldr-stats">
-    <div><b>1</b><span>data warehouse, built solo from scratch</span></div>
+    <div><b>1</b><span>data warehouse, built from scratch</span></div>
     <div><b>5</b><span>source systems unified into it</span></div>
-    <div><b>${builtOnCount}</b><span>tools the company built on it</span></div>
+    <div><b>${builtOnCount}</b><span>tools I built on top of it</span></div>
     <div><b>100%</b><span>out-of-sample decision accuracy</span></div>
   </div>
 </div></section>`;
