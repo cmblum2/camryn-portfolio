@@ -6,15 +6,15 @@ export const sources = ['Shopify', 'Amazon', 'Amazon Vendor', 'Amazon Ads', 'Tik
 
 // Production projects that ran on the warehouse, grouped by business function (right side of the graph).
 export const graphGroups = [
-  { key: 'finance', label: 'the sale · finance', ids: ['sell', 'fbt'],
+  { key: 'finance', label: 'the sale · finance', title: 'Financial analytics & decision support', ids: ['sell', 'fbt'],
     blurb: 'Warehouse-powered finance calls — a diligence reconciliation and a build-vs-buy decision.' },
-  { key: 'growth', label: 'affiliate growth engine', ids: ['discovery', 'engine', 'n8n'], chain: true,
+  { key: 'growth', label: 'affiliate growth engine', title: 'Applied ML, LLM agents & automation — the affiliate growth engine', ids: ['discovery', 'engine', 'n8n'], chain: true,
     blurb: 'One end-to-end system, three parts: discovery finds & scores creators → the decision engine calls scale / cut → n8n alerts on every change.' },
-  { key: 'bi', label: 'exec visibility', ids: ['dashboard'],
+  { key: 'bi', label: 'exec visibility', title: 'Business intelligence — the executive dashboard', ids: ['dashboard'],
     blurb: 'The decision surface leadership ran on, over the warehouse.' },
   // Public rebuilds modeled on the SAME warehouse (synthetic data) — connected, but dashed to
   // mark them as shareable rebuilds rather than production systems.
-  { key: 'rebuild', label: 'public rebuilds · modeled on the warehouse', ids: ['nl2sql', 'dbt'], dashed: true },
+  { key: 'rebuild', label: 'public rebuilds · modeled on the warehouse', title: 'Analytics engineering & LLM tooling — public rebuilds', ids: ['nl2sql', 'dbt'], dashed: true },
 ];
 // Detached band: only the genuinely different domain (research-lab voice AI).
 export const beyondIds = ['voice'];

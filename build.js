@@ -106,10 +106,10 @@ function group(title, ids, note, blurb) {
   return `<div class="dz-group"><div class="dz-gh">${esc(title)}${note ? ` <span class="dz-note">${esc(note)}</span>` : ''}</div>${b}${arts}</div>`;
 }
 const dossierHtml = [
-  group('The foundation — built from scratch', ['warehouse']),
-  ...wh.graphGroups.map(g => group(g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '', g.blurb)),
-  group('A separate, ongoing engagement · People and Robots Lab × Kamp Lab (UW–Madison)', wh.beyondIds, '(ongoing · co-authoring voice AI · NIH R01 scored highly)'),
-  group('Live & tooling', ['deploy']),
+  group('Data engineering — the warehouse, built from scratch', ['warehouse']),
+  ...wh.graphGroups.map(g => group(g.title || g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '', g.blurb)),
+  group('Voice-AI research — People and Robots Lab × Kamp Lab (UW–Madison)', wh.beyondIds, '(ongoing · co-authoring · NIH R01 scored highly)'),
+  group('Deployments — live & in production', ['deploy']),
 ].join('\n');
 
 // ---------- Skills / stack (prerendered) ----------
