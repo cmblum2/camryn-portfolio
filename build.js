@@ -24,7 +24,7 @@ const jsonLd = {
   mainEntity: {
     '@type': 'Person',
     name: 'Camryn Blum',
-    jobTitle: 'Data & AI Intern',
+    jobTitle: 'AI & Data Engineer',
     email: 'mailto:' + wh.links.email,
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Wisconsin–Madison' },
     worksFor: { '@type': 'Organization', name: 'FHI Heat' },
