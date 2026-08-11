@@ -86,16 +86,20 @@ function article(e) {
     ? `<div class="dz-sk">${e.skills.map(s => `<span>${esc(s)}</span>`).join('')}</div>`
     : '';
   const step = e.step ? `<span class="dz-step">${esc(e.step)}</span>` : '';
-  return `<article class="dz${viz ? ' has-viz' : ''}">
+  const lensAttr = esc((e.lenses || []).join(' '));
+  return `<article class="dz${viz ? ' has-viz' : ''}" data-eid="${esc(e.id)}" data-lenses="${lensAttr}">
     ${viz ? `<div class="dz-viz">${viz}</div>` : ''}
     <div class="dz-body">
       <div class="dz-h"><h3>${step}${esc(e.headline)}</h3><span class="dz-m">${esc(e.metric)}</span></div>
       <div class="dz-sub">${esc(e.mlabel)}</div>
-      <p class="dz-n">${esc(e.narrative)}</p>
-      ${tech}
-      <div class="dz-l">${lineage}</div>
       ${skills}
-      ${links}
+      <details class="dz-more">
+        <summary><span class="dz-more-l"><span class="o">Read how it works</span><span class="c">Hide details</span></span></summary>
+        <p class="dz-n">${esc(e.narrative)}</p>
+        ${tech}
+        <div class="dz-l">${lineage}</div>
+        ${links}
+      </details>
     </div>
   </article>`;
 }

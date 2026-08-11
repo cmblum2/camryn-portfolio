@@ -162,6 +162,7 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 .hero2 .wrap{padding:64px 24px 52px}
 .hero2 .eyebrow{margin-bottom:22px}
 .h1big{font-size:clamp(2.1rem,5.2vw,3.6rem);font-weight:800;line-height:1.05;letter-spacing:-.032em;max-width:20ch}
+.h1sub{font-size:clamp(1.02rem,2vw,1.28rem);line-height:1.5;color:#c9cdd4;max-width:54ch;margin-top:16px;font-weight:500}
 .lede{font-size:1.06rem;line-height:1.62;color:var(--dim);max-width:70ch;margin-top:20px}
 .hero2 .tldr-stats{margin-top:28px}
 .hero2 .cta{margin-top:30px}
@@ -170,6 +171,23 @@ h2.sec{font-size:1.7rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
 #system .graphwrap{margin-bottom:22px}
 #system .bar{margin-top:10px}
 #work .dz-group:first-of-type{margin-top:8px}
+
+/* ===== redesign: collapsible cards + role-lens filter ===== */
+.lensbar{display:flex;align-items:center;gap:12px;margin:14px 0 2px}
+.lens-label{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim2)}
+.dz{transition:opacity .25s,border-color .25s,box-shadow .25s}
+.dz.dim{opacity:.3}
+.dz.flash{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber),0 0 26px rgba(240,180,41,.18)}
+.dz-more{margin-top:14px;border-top:1px solid var(--line2)}
+.dz-more>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:11px 0 2px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--amber);user-select:none}
+.dz-more>summary::-webkit-details-marker{display:none}
+.dz-more>summary::after{content:"▾";font-size:.8rem;transition:transform .2s}
+.dz-more[open]>summary::after{transform:rotate(180deg)}
+.dz-more>summary:hover{color:#ffd66b}
+.dz-more .c{display:none}
+.dz-more[open] .o{display:none}
+.dz-more[open] .c{display:inline}
+.dz-more .dz-n{margin-top:12px}
 .cred{margin-top:16px;font-family:var(--mono);font-size:.72rem;color:var(--dim2)}
 
 /* Experience strip — two engagements */
