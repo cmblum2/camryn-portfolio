@@ -109,11 +109,18 @@ function group(title, ids, note, blurb) {
   const b = blurb ? `<div class="dz-gblurb">${esc(blurb)}</div>` : '';
   return `<div class="dz-group"><div class="dz-gh">${esc(title)}${note ? ` <span class="dz-note">${esc(note)}</span>` : ''}</div>${b}${arts}</div>`;
 }
+// Consolidated dossier groups (decoupled from the graph's finer bands): fewer, clearer buckets.
+const gg = Object.fromEntries(wh.graphGroups.map(g => [g.key, g]));
 const dossierHtml = [
-  group('Data engineering — the warehouse, built from scratch', ['warehouse']),
-  ...wh.graphGroups.map(g => group(g.title || g.label, g.ids, g.dashed ? '(synthetic rebuilds, public)' : '', g.blurb)),
-  group('Voice-AI research — People and Robots Lab × Kamp Lab (UW–Madison)', wh.beyondIds, '(ongoing · co-authoring · NIH R01 scored highly)'),
-  group('Deployments — live & in production', ['deploy']),
+  group('Data engineering — the warehouse, built from scratch', ['warehouse'], '',
+    'The single SQL source of truth every tool below runs on.'),
+  group(gg.growth.title, gg.growth.ids, '', gg.growth.blurb),
+  group('Financial analytics, BI & decision support', ['sell', 'fbt', 'dashboard'], '',
+    'Warehouse-powered decisions — a diligence reconciliation, a build-vs-buy call, and the executive dashboard leadership ran on.'),
+  group('Public rebuilds & live deployments — analytics engineering + LLM tooling', ['nl2sql', 'dbt', 'deploy'],
+    '(synthetic data · public repos)'),
+  group('Voice-AI research — People and Robots Lab × Kamp Lab (UW–Madison)', wh.beyondIds,
+    '(ongoing · co-authoring · NIH R01 scored highly)'),
 ].join('\n');
 
 // ---------- Skills / stack (prerendered) ----------
