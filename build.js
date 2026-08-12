@@ -87,6 +87,7 @@ function article(e) {
     : '';
   const step = e.step ? `<span class="dz-step">${esc(e.step)}</span>` : '';
   const lensAttr = esc((e.lenses || []).join(' '));
+  const shot = e.shot ? `<figure class="dz-shot"><img loading="lazy" src="${esc(e.shot.src)}" alt="${esc(e.shot.cap)}"><figcaption>${esc(e.shot.cap)}</figcaption></figure>` : '';
   return `<article class="dz${viz ? ' has-viz' : ''}" data-eid="${esc(e.id)}" data-lenses="${lensAttr}">
     ${viz ? `<div class="dz-viz">${viz}</div>` : ''}
     <div class="dz-body">
@@ -95,6 +96,7 @@ function article(e) {
       ${skills}
       <details class="dz-more">
         <summary><span class="dz-more-l"><span class="o">Read how it works</span><span class="c">Hide details</span></span></summary>
+        ${shot}
         <p class="dz-n">${esc(e.narrative)}</p>
         ${tech}
         <div class="dz-l">${lineage}</div>
