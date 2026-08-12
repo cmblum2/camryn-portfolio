@@ -124,7 +124,7 @@ h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.4vw,4
 .dz-gblurb{font-family:var(--sans);font-size:1.04rem;color:var(--ink2);line-height:1.5;margin:16px 0 28px;max-width:74ch}
 
 .dz{padding:32px 0;border-bottom:1px solid var(--line);transition:opacity .3s}
-.dz.has-viz{display:grid;grid-template-columns:270px 1fr;gap:34px;align-items:start}
+.dz.has-viz{display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start}
 @media(max-width:720px){.dz.has-viz{grid-template-columns:1fr;gap:18px}}
 .dz.dim{opacity:.26}
 .dz.flash .dz-viz{outline:2px solid var(--ink);outline-offset:6px}
