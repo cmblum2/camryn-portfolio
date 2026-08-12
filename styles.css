@@ -176,3 +176,17 @@ footer a:hover{color:var(--dim);border-color:var(--dim)}
   .hero2 .lede{animation-delay:.46s}.hero2 .cta{animation-delay:.56s}.hero2 .tldr-stats{animation-delay:.66s}
 }
 @keyframes riseIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* graph self-draws on scroll (JS adds .anim, then .draw when in view) */
+@media(prefers-reduced-motion:no-preference){
+  #graph.anim line{stroke-dasharray:640;stroke-dashoffset:640}
+  #graph.anim circle,#graph.anim text{opacity:0}
+  #graph.anim.draw line{animation:gdraw 1.15s cubic-bezier(.45,.6,.2,1) forwards}
+  #graph.anim.draw circle{animation:gfade .55s ease .3s forwards}
+  #graph.anim.draw text{animation:gfade .7s ease .5s forwards}
+}
+@keyframes gdraw{to{stroke-dashoffset:0}}
+@keyframes gfade{from{opacity:0}to{opacity:1}}
+
+/* colophon */
+.colophon{margin-top:12px;font-family:var(--head);font-weight:400;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2)}

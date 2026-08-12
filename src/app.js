@@ -38,13 +38,36 @@ function init() {
     if (b) setLens(b.dataset.lens);
   });
 
-  // Scroll-reveal (JS-only — added at runtime so no-JS crawlers see full content).
+  // Motion extras (JS-only so no-JS crawlers see full content; reduced-motion-safe).
   if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+    const graphEl = document.getElementById('graph');
+    if (graphEl) graphEl.classList.add('anim');           // pre-hide graph parts for the self-draw
     const io = new IntersectionObserver((entries) => {
-      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        if (en.target.id === 'system' && graphEl) graphEl.classList.add('draw');  // signature: draw the lineage graph
+        io.unobserve(en.target);
+      });
     }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
     document.querySelectorAll('.exp, #skills, #system, #work .dz-group, footer').forEach(t => {
       t.classList.add('reveal'); io.observe(t);
+    });
+    // count-up the hero stat numerals (1 / 15+ / 6 / 100%)
+    document.querySelectorAll('.tldr-stats b').forEach(el => {
+      const m = el.textContent.trim().match(/^(\d+)(.*)$/);
+      if (!m) return;
+      const target = parseInt(m[1], 10), suffix = m[2];
+      el.textContent = '0' + suffix;
+      setTimeout(() => {
+        const t0 = performance.now(), dur = 1100;
+        const tick = (now) => {
+          const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(e * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }, 720);
     });
   }
 
