@@ -1,6 +1,5 @@
 import * as wh from './warehouse.js';
 import { renderStack } from './render.js';
-import { buildGraph } from './graph.js';
 import { loadStatus, renderStatus } from './status.js';
 
 const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
@@ -26,8 +25,9 @@ function jumpToCard(id) {
 }
 
 function init() {
-  document.getElementById('graph').innerHTML = buildGraph(wh.entries, { sources: wh.sources, groups: wh.graphGroups, beyond: wh.beyondIds });
-  document.getElementById('graph').addEventListener('click', e => {
+  // Graph is prerendered by build.js; just wire node clicks onto it (no re-render → cache-proof).
+  const graphEl = document.getElementById('graph');
+  if (graphEl) graphEl.addEventListener('click', e => {
     const g = e.target.closest('.gnode');
     if (g) jumpToCard(g.dataset.id);
   });
