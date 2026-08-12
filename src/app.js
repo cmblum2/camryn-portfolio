@@ -38,6 +38,16 @@ function init() {
     if (b) setLens(b.dataset.lens);
   });
 
+  // Scroll-reveal (JS-only — added at runtime so no-JS crawlers see full content).
+  if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    document.querySelectorAll('.exp, #skills, #system, #work .dz-group, footer').forEach(t => {
+      t.classList.add('reveal'); io.observe(t);
+    });
+  }
+
   document.getElementById('stack').innerHTML = renderStack(wh.stack);
   const l = wh.links;
   document.getElementById('footlinks').innerHTML =

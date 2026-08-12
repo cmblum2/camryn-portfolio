@@ -1,15 +1,15 @@
 // Compact, on-brand SVG schematics — one visual language per project.
 // §8-safe (schematic, no real data), inline (no external images), scanner-readable (aria-label + text).
-const A = '#f0b429', G = '#3fb950', RED = '#ff7b72', LINE = '#2a323e', DIM = '#8a909a', INK = '#cbd0d8', BLU = '#7f93b8';
+const A = '#9b3324', G = '#3f7a55', RED = '#bd5a2e', LINE = '#c3b9a4', DIM = '#8b8271', INK = '#332d22', BLU = '#5f6b82';
 const M = (s) => `font-family="'JetBrains Mono',monospace" font-size="${s}"`;
 const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
 function frame(inner, label) {
   return `<svg viewBox="0 0 340 150" width="100%" style="display:block" role="img" aria-label="${esc(label)}">`
-    + `<rect x="0.5" y="0.5" width="339" height="149" rx="10" fill="#0a0d12" stroke="${LINE}"/>${inner}</svg>`;
+    + `<rect x="0.5" y="0.5" width="339" height="149" rx="10" fill="#efe8da" stroke="${LINE}"/>${inner}</svg>`;
 }
 const ln = (x1, y1, x2, y2, dash) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${LINE}" stroke-width="1"${dash ? ' stroke-dasharray="3 3"' : ''}/>`;
-const dot = (x, y, r, stroke) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#0e1219" stroke="${stroke || A}" stroke-width="1.4"/>`;
+const dot = (x, y, r, stroke) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#f3eee4" stroke="${stroke || A}" stroke-width="1.4"/>`;
 const tx = (x, y, s, size, fill, anchor) => `<text x="${x}" y="${y}" ${M(size || 8)} fill="${fill || DIM}" text-anchor="${anchor || 'start'}">${esc(s)}</text>`;
 
 export function renderViz(e) {
@@ -56,8 +56,8 @@ function reconcile() {
 function bars() {
   const base = 124;
   let s = ln(30, base, 310, base);
-  s += `<rect x="86" y="${base - 52}" width="46" height="52" rx="2" fill="rgba(63,185,80,.14)" stroke="${G}"/>`;
-  s += `<rect x="200" y="${base - 90}" width="46" height="90" rx="2" fill="rgba(255,123,114,.12)" stroke="${RED}"/>`;
+  s += `<rect x="86" y="${base - 52}" width="46" height="52" rx="2" fill="rgba(63,122,85,.14)" stroke="${G}"/>`;
+  s += `<rect x="200" y="${base - 90}" width="46" height="90" rx="2" fill="rgba(189,90,46,.12)" stroke="${RED}"/>`;
   s += tx(109, base + 14, 'in-house', 7.5, DIM, 'middle') + tx(223, base + 14, 'FBT', 7.5, DIM, 'middle');
   s += tx(170, 20, 'build vs buy — per-SKU cost', 8, DIM, 'middle');
   s += `<circle cx="223" cy="24" r="12" fill="none" stroke="${RED}" stroke-width="1.4"/>` + tx(223, 27, 'NO', 8, RED, 'middle');
@@ -67,13 +67,13 @@ function bars() {
 function funnel() {
   let s = tx(170, 18, 'comments → buy-intent → rank', 8, DIM, 'middle');
   // scraped comments (left)
-  s += `<rect x="22" y="46" width="52" height="66" rx="3" fill="rgba(240,180,41,.06)" stroke="${LINE}"/>` + tx(48, 82, 'comments', 6.5, DIM, 'middle') + tx(48, 128, '(scraped)', 6, DIM, 'middle');
+  s += `<rect x="22" y="46" width="52" height="66" rx="3" fill="rgba(155,51,36,.07)" stroke="${LINE}"/>` + tx(48, 82, 'comments', 6.5, DIM, 'middle') + tx(48, 128, '(scraped)', 6, DIM, 'middle');
   // buy-intent ML model
-  s += ln(74, 79, 104, 79) + `<rect x="104" y="60" width="72" height="38" rx="4" fill="rgba(240,180,41,.09)" stroke="${A}"/>` + tx(140, 76, 'buy-intent', 7, INK, 'middle') + tx(140, 88, 'lexicon', 6.5, DIM, 'middle');
+  s += ln(74, 79, 104, 79) + `<rect x="104" y="60" width="72" height="38" rx="4" fill="rgba(155,51,36,.10)" stroke="${A}"/>` + tx(140, 76, 'buy-intent', 7, INK, 'middle') + tx(140, 88, 'lexicon', 6.5, DIM, 'middle');
   s += ln(176, 79, 204, 79);
   // ranked creators (descending score bars, top = amber)
   const bw = [62, 48, 36, 26];
-  bw.forEach((w, i) => { const y = 52 + i * 17; s += `<rect x="216" y="${y}" width="${w}" height="10" rx="2" fill="${i === 0 ? 'rgba(240,180,41,.18)' : 'none'}" stroke="${i === 0 ? A : DIM}"/>` + dot(210, y + 5, 2.6, i === 0 ? A : DIM); });
+  bw.forEach((w, i) => { const y = 52 + i * 17; s += `<rect x="216" y="${y}" width="${w}" height="10" rx="2" fill="${i === 0 ? 'rgba(155,51,36,.16)' : 'none'}" stroke="${i === 0 ? A : DIM}"/>` + dot(210, y + 5, 2.6, i === 0 ? A : DIM); });
   s += tx(216, 138, 'ranked creators', 7, DIM);
   return s;
 }
@@ -93,7 +93,7 @@ function breakeven() {
 function curve() {
   let s = ln(30, 122, 320, 122) + ln(30, 122, 30, 24);
   const pts = '30,112 96,96 160,72 224,56 290,34 316,28';
-  s += `<polygon points="30,122 ${pts} 316,122" fill="rgba(63,185,80,.12)"/>`;
+  s += `<polygon points="30,122 ${pts} 316,122" fill="rgba(63,122,85,.12)"/>`;
   s += `<polyline points="${pts}" fill="none" stroke="${G}" stroke-width="2"/>`;
   s += [96, 160, 224, 290].map(x => ln(x, 118, x, 126)).join('');
   s += tx(316, 20, '100% OOS', 9, G, 'end') + tx(30, 140, '4 cutoff windows, no look-ahead', 7, DIM);
@@ -115,7 +115,7 @@ function tiles() {
   ['revenue', 'margin', 'ad spend'].forEach((k, i) => { const x = 30 + i * 100; s += `<rect x="${x}" y="28" width="88" height="26" rx="4" fill="none" stroke="${LINE}"/>` + tx(x + 9, 45, k, 6.5, DIM) + `<rect x="${x + 52}" y="38" width="28" height="6" rx="3" fill="${A}"/>`; });
   // channel bars — one anomalous spike (a data bug) flagged, the rest normal
   const bh = [24, 30, 96, 26, 20];
-  bh.forEach((h, i) => { const x = 40 + i * 30; const bug = i === 2; s += `<rect x="${x}" y="${128 - h}" width="18" height="${h}" rx="2" fill="${bug ? 'rgba(255,123,114,.14)' : 'none'}" stroke="${bug ? RED : LINE}"/>`; });
+  bh.forEach((h, i) => { const x = 40 + i * 30; const bug = i === 2; s += `<rect x="${x}" y="${128 - h}" width="18" height="${h}" rx="2" fill="${bug ? 'rgba(189,90,46,.14)' : 'none'}" stroke="${bug ? RED : LINE}"/>`; });
   s += ln(34, 128, 190, 128);
   s += tx(206, 68, '⚠ anomaly', 7.5, RED) + tx(206, 80, 'caught + fixed', 7, DIM);
   return s;

@@ -14,9 +14,9 @@ export function buildGraph(entries, opts = {}) {
   let srcEdges = '', srcNodes = '';
   sources.forEach((s, i) => {
     const y = Math.round(sTop + i * sGap);
-    srcEdges += `<line x1="${sx}" y1="${y}" x2="${whX}" y2="${whY}" stroke="#1f2630" stroke-width="1"/>`;
-    srcNodes += `<g><circle cx="${sx}" cy="${y}" r="4" fill="#0e1219" stroke="#3a4553" stroke-width="1.2"/>`
-      + `<text x="${sx - 12}" y="${y + 3}" text-anchor="end" ${MONO(8)} fill="#8a909a">${esc(s)}</text></g>`;
+    srcEdges += `<line x1="${sx}" y1="${y}" x2="${whX}" y2="${whY}" stroke="#cdc4b0" stroke-width="1"/>`;
+    srcNodes += `<g><circle cx="${sx}" cy="${y}" r="4" fill="#f3eee4" stroke="#b0a68f" stroke-width="1.2"/>`
+      + `<text x="${sx - 12}" y="${y + 3}" text-anchor="end" ${MONO(8)} fill="#8b8271">${esc(s)}</text></g>`;
   });
 
   // projects (right), grouped by business function; a `dashed` group = public rebuilds of the warehouse
@@ -25,7 +25,7 @@ export function buildGraph(entries, opts = {}) {
   const gGap = groups.length > 1 ? gSpan / (groups.length - 1) : 0;
   groups.forEach((g, gi) => {
     const gy = Math.round(gTop + gi * gGap);
-    const labelColor = g.dashed ? '#8aa0c0' : '#f0b429';
+    const labelColor = g.dashed ? '#8f8676' : '#9b3324';
     grpLabels += `<text x="590" y="${gy - 22}" ${MONO(10)} fill="${labelColor}" letter-spacing="1">${esc(g.label)}</text>`;
     const xs = [];
     g.ids.forEach((id, j) => {
@@ -33,8 +33,8 @@ export function buildGraph(entries, opts = {}) {
       const x = 612 + j * 155, y = gy;
       xs.push(x);
       const edge = g.dashed
-        ? `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#33405c" stroke-width="1" stroke-dasharray="4 4"/>`
-        : `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#232a34" stroke-width="1"/>`;
+        ? `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#c3b9a4" stroke-width="1" stroke-dasharray="4 4"/>`
+        : `<line x1="${whX}" y1="${whY}" x2="${x}" y2="${y}" stroke="#c3b9a4" stroke-width="1"/>`;
       prodEdges += edge;
       prodNodes += projNode(x, y, id, e.label || id, null, g.dashed);
     });
@@ -42,21 +42,21 @@ export function buildGraph(entries, opts = {}) {
     if (g.chain) {
       for (let k = 0; k < xs.length - 1; k++) {
         const mx = (xs[k] + xs[k + 1]) / 2;
-        prodEdges += `<line x1="${xs[k] + 9}" y1="${gy}" x2="${xs[k + 1] - 9}" y2="${gy}" stroke="#f0b429" stroke-width="1.3"/>`;
-        prodNodes += `<text x="${mx}" y="${gy + 3.5}" text-anchor="middle" ${MONO(9)} fill="#f0b429">▸</text>`;
+        prodEdges += `<line x1="${xs[k] + 9}" y1="${gy}" x2="${xs[k + 1] - 9}" y2="${gy}" stroke="#9b3324" stroke-width="1.3"/>`;
+        prodNodes += `<text x="${mx}" y="${gy + 3.5}" text-anchor="middle" ${MONO(9)} fill="#9b3324">▸</text>`;
       }
     }
   });
 
   // warehouse root
   const wh = `<g class="gnode" data-id="warehouse" style="cursor:pointer">`
-    + `<circle cx="${whX}" cy="${whY}" r="18" fill="#f0b429"/>`
-    + `<text x="${whX}" y="${whY + 37}" text-anchor="middle" ${MONO(11)} fill="#7c828c">warehouse · built from scratch</text></g>`;
+    + `<circle cx="${whX}" cy="${whY}" r="18" fill="#9b3324"/>`
+    + `<text x="${whX}" y="${whY + 37}" text-anchor="middle" ${MONO(11)} fill="#8b8271">warehouse · built from scratch</text></g>`;
 
   // detached band: a genuinely separate domain (research-lab voice AI), not on the warehouse
   const bandY = 452;
-  let beyondSvg = `<line x1="60" y1="${bandY}" x2="940" y2="${bandY}" stroke="#1a1f27" stroke-width="1" stroke-dasharray="4 4"/>`
-    + `<text x="60" y="${bandY - 10}" ${MONO(10)} fill="#7c828c" letter-spacing="1">SEPARATE ENGAGEMENT — UW PEOPLE &amp; ROBOTS × KAMP LAB · VOICE AI · NIH R01</text>`;
+  let beyondSvg = `<line x1="60" y1="${bandY}" x2="940" y2="${bandY}" stroke="#c3b9a4" stroke-width="1" stroke-dasharray="4 4"/>`
+    + `<text x="60" y="${bandY - 10}" ${MONO(10)} fill="#8b8271" letter-spacing="1">SEPARATE ENGAGEMENT — UW PEOPLE &amp; ROBOTS × KAMP LAB · VOICE AI · NIH R01</text>`;
   beyond.forEach((id, i) => {
     const e = byId[id]; if (!e) return;
     const x = 190 + i * 230, y = bandY + 58;
@@ -68,11 +68,11 @@ export function buildGraph(entries, opts = {}) {
 }
 
 function projNode(x, y, id, label, tag, muted) {
-  const t = tag ? `<text x="${x}" y="${y + 33}" text-anchor="middle" ${MONO(8)} fill="#6b7280">${esc(tag)}</text>` : '';
-  const stroke = muted ? '#6b86b0' : '#f0b429';
+  const t = tag ? `<text x="${x}" y="${y + 33}" text-anchor="middle" ${MONO(8)} fill="#8b8271">${esc(tag)}</text>` : '';
+  const stroke = muted ? '#8f8676' : '#9b3324';
   return `<g class="gnode" data-id="${id}" style="cursor:pointer">`
-    + `<circle cx="${x}" cy="${y}" r="8" fill="#0e1219" stroke="${stroke}" stroke-width="1.5"/>`
-    + `<text x="${x}" y="${y + 20}" text-anchor="middle" ${MONO(9.5)} fill="#c9cdd4">${esc(label)}</text>${t}</g>`;
+    + `<circle cx="${x}" cy="${y}" r="8" fill="#f3eee4" stroke="${stroke}" stroke-width="1.5"/>`
+    + `<text x="${x}" y="${y + 20}" text-anchor="middle" ${MONO(9.5)} fill="#4f473a">${esc(label)}</text>${t}</g>`;
 }
 
 function MONO(size) { return `font-family="'JetBrains Mono',monospace" font-size="${size}"`; }
