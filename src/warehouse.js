@@ -73,6 +73,7 @@ export const entries = [
     viz: 'breakeven',
     shots: [
       { src: 'assets/shots/engine-decisions.png', cap: 'Decision desk — GMV Max scale/cut verdicts, impact-ranked & self-scored (synthetic rebuild of the production engine)' },
+      { src: 'assets/shots/engine-today.png', cap: '"Today" view — health lights, verb-first moves & action lanes (synthetic)' },
       { src: 'assets/shots/rag-demo.png', cap: 'Also public & live — the deployed synthetic demo' },
     ],
     plan: "SELECT verdict FROM ad_campaigns WHERE realized_roas < breakeven → 'cut'  (then backtest)",
