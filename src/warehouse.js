@@ -143,7 +143,7 @@ export const entries = [
     plan: "-- \"show Q3 revenue by channel\"  →  SELECT ... (read-only, role-scoped)",
     metric: '5 roles', mlabel: 'governed NL→SQL agent · live',
     headline: 'NL→SQL analytics agent (governed)',
-    narrative: "A LangGraph agent that turns plain-English questions into governed SQL — read-only, self-repairing, with role-based access enforced in three layers (schema-scoped prompt, a guard, and per-role DuckDB views). Public rebuild on synthetic data modeled on my warehouse; live demo with five role logins (ask it to 'delete all orders' and it refuses).",
+    narrative: "One warehouse the whole company can ask in plain English — from an intern to the CEO — each role scoped to exactly what it's cleared to see, every answer grounded in a single source of truth. A LangGraph agent turns the question into governed SQL (read-only, self-repairing) with role-based access enforced in three layers: a schema-scoped prompt, a guard, and per-role DuckDB views (hidden columns physically absent). Public rebuild on synthetic data modeled on my warehouse; live demo with five role logins (ask it to 'delete all orders' and it refuses).",
     skills: ['LLM agents (LangGraph)', 'Text-to-SQL', 'Guardrails / governance', 'Evaluation'],
     tech: [
       "LangGraph agent: NL → SQL → execute → chart, with a guardrail node (read-only SELECT only, forced LIMIT, blocks DML) and a self-repair loop (catch SQL error → feed it back → retry).",
