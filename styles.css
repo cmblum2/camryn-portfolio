@@ -149,7 +149,8 @@ h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.4vw,4
 .dz-more .c{display:none}.dz-more[open] .o{display:none}.dz-more[open] .c{display:inline}
 .dz-n{font-family:var(--sans);font-size:1rem;line-height:1.72;color:var(--ink2);margin-top:14px;max-width:74ch}
 /* real project screenshots inside the dropdown — grayscale, color on hover */
-.dz-shot{margin:16px 0 6px;max-width:640px}
+.dz-shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:16px 0 6px}
+.dz-shot{margin:0}
 .dz-shot img{display:block;width:100%;border:1px solid var(--line3);filter:grayscale(1) contrast(1.03);transition:filter .4s ease}
 .dz-shot img:hover{filter:none}
 .dz-shot figcaption{font-family:var(--head);font-weight:500;font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;color:var(--dim2);margin-top:9px}
