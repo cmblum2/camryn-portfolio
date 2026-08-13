@@ -10,9 +10,11 @@
   --accent:#0a0a0a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;
-  font-size:16px;line-height:1.55;text-rendering:optimizeLegibility}
+  font-size:16px;line-height:1.55;text-rendering:optimizeLegibility;overflow-x:hidden;max-width:100%}
+img,svg{max-width:100%}
+.h1big,.h1sub,.lede,.sec,.dz-gh,.dz-h h3,.dz-gblurb,.dz-n,.dz-tk li{overflow-wrap:break-word}
 ::selection{background:var(--ink);color:#fff}
 .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
 @media(max-width:640px){.wrap{padding:0 20px}}
@@ -150,7 +152,7 @@ h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.4vw,4
 .dz-n{font-family:var(--sans);font-size:1rem;line-height:1.72;color:var(--ink2);margin-top:14px;max-width:74ch}
 /* real project screenshots inside the dropdown — grayscale, color on hover */
 .dz-shotsnote{font-family:var(--sans);font-size:.88rem;font-style:italic;color:var(--dim);line-height:1.5;margin:16px 0 4px;max-width:76ch}
-.dz-shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:10px 0 6px}
+.dz-shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin:10px 0 6px}
 .dz-shot{margin:0}
 .dz-shot img{display:block;width:100%;border:1px solid var(--line3);filter:grayscale(1) contrast(1.03);transition:filter .4s ease}
 .dz-shot img:hover{filter:none}
@@ -198,3 +200,11 @@ footer a:hover{color:var(--dim);border-color:var(--dim)}
 
 /* colophon */
 .colophon{margin-top:12px;font-family:var(--head);font-weight:400;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2)}
+
+/* mobile hardening */
+@media(max-width:560px){
+  .dz-h{flex-wrap:wrap;gap:2px}
+  .dz-m{white-space:normal}
+  .tldr-stats div{padding-right:12px}
+  .tldr-stats b{font-size:2.4rem}
+}
