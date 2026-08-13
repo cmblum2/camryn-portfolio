@@ -7,10 +7,21 @@ const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').re
 // Role lens: dim the work cards that don't carry the selected lens ('all' clears it).
 function setLens(lens) {
   document.querySelectorAll('#lens button').forEach(b => b.classList.toggle('on', b.dataset.lens === lens));
+  document.querySelectorAll('#work details.dz-more[open]').forEach(d => { d.open = false; }); // reset expanded cards
+  let shown = 0;
   document.querySelectorAll('#work article.dz').forEach(a => {
     const ls = (a.dataset.lenses || '').split(' ').filter(Boolean);
-    a.classList.toggle('dim', lens !== 'all' && !ls.includes(lens));
+    const match = lens === 'all' || ls.includes(lens);
+    a.classList.toggle('is-hidden', !match);
+    if (match) shown++;
   });
+  // hide any discipline group whose cards are all filtered out
+  document.querySelectorAll('#work .dz-group').forEach(g => {
+    const anyVisible = [...g.querySelectorAll('article.dz')].some(a => !a.classList.contains('is-hidden'));
+    g.classList.toggle('is-hidden', !anyVisible);
+  });
+  const cnt = document.getElementById('lenscount');
+  if (cnt) cnt.textContent = lens === 'all' ? '' : `${shown} ${lens} project${shown === 1 ? '' : 's'}`;
 }
 
 // Graph node → jump to that project's card, expand it, and flash it.
