@@ -1,6 +1,6 @@
 import * as wh from './warehouse.js';
 import { renderStack } from './render.js';
-import { loadStatus, renderStatus } from './status.js';
+import { loadStatus, renderStatus } from './status.js?v=18';
 
 const esc = (s) => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
