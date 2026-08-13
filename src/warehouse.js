@@ -71,7 +71,10 @@ export const entries = [
   { id: 'engine', root: 'warehouse', group: 'growth', label: 'decision engine', lenses: ['AI', 'ML', 'IB'],
     keywords: ['engine', 'decision', 'roi', 'roas', 'campaign', 'ad spend', 'adspend', 'backtest', 'breakeven', 'prove', 'accuracy', 'right'],
     viz: 'breakeven',
-    shots: [{ src: 'assets/shots/rag-demo.png', cap: 'Public synthetic rebuild — the live decision-desk demo (all data synthetic)' }],
+    shots: [
+      { src: 'assets/shots/engine-decisions.png', cap: 'Decision desk — GMV Max scale/cut verdicts, impact-ranked & self-scored (synthetic rebuild of the production engine)' },
+      { src: 'assets/shots/rag-demo.png', cap: 'Also public & live — the deployed synthetic demo' },
+    ],
     plan: "SELECT verdict FROM ad_campaigns WHERE realized_roas < breakeven → 'cut'  (then backtest)",
     metric: '100% OOS', mlabel: 'affiliate decision engine · shipped',
     headline: 'Affiliate ad-spend decision engine',
