@@ -5,7 +5,7 @@
   --head:'Oswald',system-ui,sans-serif;
   --sans:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:'Oswald',ui-monospace,Consolas,monospace;
-  --bg:#ffffff; --panel:#f5f5f5; --ink:#0a0a0a; --ink2:#2e2e2e; --dim:#666; --dim2:#9a9a9a;
+  --bg:#ffffff; --panel:#f5f5f5; --tint:#f4f4f3; --ink:#0a0a0a; --ink2:#2e2e2e; --dim:#666; --dim2:#9a9a9a;
   --line:#e6e6e6; --line2:#f0f0f0; --line3:#0a0a0a;
   --accent:#0a0a0a; --pop:#2f5bff; --pop-dark:#1e3fd0;
   --up:#12b76a; --idle:#e0a100; --down:#d1382c;
@@ -20,6 +20,9 @@ img,svg{max-width:100%}
 .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
 @media(max-width:640px){.wrap{padding:0 20px}}
 section{padding:78px 0;border-top:1px solid var(--line);scroll-margin-top:78px}
+/* alternating value bands so sections read as distinct without adding color */
+.exp,#system{background:var(--tint)}
+.exp,#skills,#system,#work{border-top:1px solid var(--line)}
 
 /* section kicker + big display title */
 .kicker{font-family:var(--head);font-weight:600;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;
@@ -102,7 +105,7 @@ h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,5.4vw,4
 
 /* ===== SYSTEM / GRAPH ===== */
 #system .graphwrap{margin-bottom:20px}
-.graphwrap{border:1px solid var(--line);background:#fafafa;padding:20px;overflow:hidden}
+.graphwrap{border:1px solid var(--line);background:#fff;padding:20px;overflow:hidden;box-shadow:0 1px 2px rgba(10,10,10,.04)}
 .gnode{transition:opacity .2s}
 .gnode text{transition:fill .18s}
 .gnode:hover circle{stroke:var(--pop)}
@@ -184,6 +187,16 @@ footer a:hover{color:var(--dim);border-color:var(--dim)}
 @media(prefers-reduced-motion:no-preference){
   .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
   .reveal.in{opacity:1;transform:none}
+  /* subtle two-beat stagger: heading arrives, then the section body rises behind it */
+  .reveal .kicker,.reveal .sec,.reveal .sec-sub,.reveal .dz-gh,.reveal .dz-gblurb,
+  .reveal .exp-item,.reveal .scol,.reveal .graphwrap,.reveal .dz{opacity:0;transform:translateY(12px);
+    transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in .kicker,.reveal.in .sec,.reveal.in .sec-sub,.reveal.in .dz-gh,.reveal.in .dz-gblurb,
+  .reveal.in .exp-item,.reveal.in .scol,.reveal.in .graphwrap,.reveal.in .dz{opacity:1;transform:none}
+  .reveal.in .kicker,.reveal.in .dz-gh{transition-delay:.04s}
+  .reveal.in .sec{transition-delay:.11s}
+  .reveal.in .sec-sub,.reveal.in .dz-gblurb{transition-delay:.18s}
+  .reveal.in .exp-item,.reveal.in .scol,.reveal.in .graphwrap,.reveal.in .dz{transition-delay:.24s}
   .hero2 .eyebrow,.hero2 .h1big,.hero2 .h1sub,.hero2 .lede,.hero2 .cta,.hero2 .tldr-stats{opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.3,1) forwards}
   .hero2 .eyebrow{animation-delay:.05s}.hero2 .h1big{animation-delay:.16s}.hero2 .h1sub{animation-delay:.34s}
   .hero2 .lede{animation-delay:.46s}.hero2 .cta{animation-delay:.56s}.hero2 .tldr-stats{animation-delay:.66s}
