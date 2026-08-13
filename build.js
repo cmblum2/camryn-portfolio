@@ -42,7 +42,7 @@ const jsonLd = {
       + "US & EU (Shopify, Amazon Seller/Vendor Central & Ads, TikTok Shop & Ads, Meta Ads, Google Ads/Analytics/"
       + "Search Console/Merchant Center, SAP, ShipStation, Attentive, Euka) into one conformed SQL schema — then "
       + "built most of the tools that ran on top of it: a creator-discovery "
-      + "ML system, an ad-spend decision engine with out-of-sample backtesting, an n8n alerting workflow, and an "
+      + "pipeline, an ad-spend decision engine with out-of-sample backtesting, an n8n alerting workflow, and an "
       + "executive BI dashboard.",
     sameAs: [wh.links.github].filter(u => u && u !== '#'),
     hasPart: projectsForLd,
@@ -57,8 +57,8 @@ const headHtml = `<meta property="og:title" content="Camryn Blum — I built FHI
 // ---------- Hero thesis (lede paragraph + stat strip; sits inside the hero) ----------
 const thesisHtml = `<p class="lede">~15 siloed systems across the US &amp; EU — Shopify, Amazon (Seller, Vendor, Ads),
   TikTok Shop &amp; Ads, Meta &amp; Google Ads, Google Analytics &amp; Search Console, SAP, ShipStation, Attentive, Euka —
-  unified into one SQL source of truth with nightly ETL. On that foundation I built an ML creator-discovery
-  system, an ad-spend decision engine (100% out-of-sample accuracy), an n8n automation, and the executive
+  unified into one SQL source of truth with nightly ETL. On that foundation I built a creator-discovery
+  pipeline, an ad-spend decision engine (100% out-of-sample accuracy), an n8n automation, and the executive
   dashboard leadership ran on.</p>
   <div class="tldr-stats">
     <div><b>1</b><span>data warehouse, built from scratch</span></div>
@@ -88,7 +88,7 @@ function article(e) {
   const step = e.step ? `<span class="dz-step">${esc(e.step)}</span>` : '';
   const lensAttr = esc((e.lenses || []).join(' '));
   const shots = (e.shots && e.shots.length)
-    ? `<div class="dz-shots">${e.shots.map(sh => `<figure class="dz-shot"><img loading="lazy" src="${esc(sh.src)}" alt="${esc(sh.cap)}"><figcaption>${esc(sh.cap)}</figcaption></figure>`).join('')}</div>`
+    ? `${e.shotsNote ? `<p class="dz-shotsnote">${esc(e.shotsNote)}</p>` : ''}<div class="dz-shots">${e.shots.map(sh => `<figure class="dz-shot"><img loading="lazy" src="${esc(sh.src)}" alt="${esc(sh.cap)}"><figcaption>${esc(sh.cap)}</figcaption></figure>`).join('')}</div>`
     : '';
   return `<article class="dz${viz ? ' has-viz' : ''}" data-eid="${esc(e.id)}" data-lenses="${lensAttr}">
     ${viz ? `<div class="dz-viz">${viz}</div>` : ''}

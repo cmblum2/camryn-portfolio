@@ -152,7 +152,7 @@ function dbt() {
   let s = sol(3, 26, 74, 205, '#fafafa') + ln(77, 26, 77, 231, LINE);
   s += tx(11, 40, 'MODELS', 6, G2, 'start', 600);
   ['stg_orders', 'stg_lines', 'dim_product', 'fct_daily', 'fct_channel'].forEach((n, i) => { const y = 52 + i * 15; s += (i === 3 ? sol(8, y - 8, 62, 11, PANEL, 2) : '') + tx(15, y, n, 5.8, i === 3 ? INK : G1); });
-  s += tx(92, 40, 'LINEAGE', 6, G2, 'start', 600) + badge(276, 41, '22/22 TESTS ✓', 0);
+  s += tx(92, 40, 'LINEAGE', 6, G2, 'start', 600) + badge(276, 41, '13/13 TESTS ✓', 0);
   s += ln(112, 96, 168, 76, G3) + ln(112, 96, 168, 116, G3) + ln(192, 76, 268, 76, G3) + ln(192, 116, 268, 116, G3) + ln(180, 116, 268, 76, G3);
   const node = (x, y, t) => sol(x - 22, y - 9, 44, 18, '#fff') + box(x - 22, y - 9, 44, 18, G3, 2) + tx(x, y + 2.5, t, 5.5, INK, 'middle');
   s += node(100, 96, 'raw') + node(180, 76, 'staging') + node(180, 116, 'staging') + node(280, 76, 'mart') + node(280, 116, 'mart');
