@@ -74,6 +74,8 @@ export const entries = [
     shots: [
       { src: 'assets/shots/engine-today.png?v=2', cap: 'Overview — the daily action queue across campaigns, spark timing & sampling; each card carries the exact move + evidence chips (synthetic 6-section desk)' },
       { src: 'assets/shots/engine-decisions.png?v=2', cap: 'Ads Machine — GMV Max campaign verdicts (scale / cut / tune / retarget) against each campaign’s own break-even ROAS' },
+      { src: 'assets/shots/engine-proof.png?v=2', cap: 'Proof no dashboard gives you — did the picks actually cause lift? A pre-registered holdout + matched-control difference-in-differences + a rank-IC recommender scorecard' },
+      { src: 'assets/shots/engine-ask.png?v=2', cap: 'Ask across everything — a RAG copilot over comments, captions & live campaign verdicts at once; the cross-source question a seller dashboard can’t answer' },
       { src: 'assets/shots/engine-money.png?v=2', cap: 'Money — unit economics, creator LTV, a margin×cost sensitivity grid & the controlled-test (holdout) proof' },
     ],
     shotsNote: 'Synthetic rebuild, live at the demo below. The desk, the campaign-verdict logic, the closed-loop self-scoring, the RAG copilot & the UX are mine; the creator-ranking model was a colleague’s. Every figure is fabricated.',
