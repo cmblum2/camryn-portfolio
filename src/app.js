@@ -38,6 +38,17 @@ function init() {
     if (b) setLens(b.dataset.lens);
   });
 
+  // Accordion: only one project dropdown open at a time; focus the card you open.
+  const smooth = matchMedia('(prefers-reduced-motion: no-preference)').matches ? 'smooth' : 'auto';
+  document.querySelectorAll('#work details.dz-more').forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (!d.open) return;
+      document.querySelectorAll('#work details.dz-more[open]').forEach(o => { if (o !== d) o.open = false; });
+      const card = d.closest('.dz');
+      if (card) card.scrollIntoView({ behavior: smooth, block: 'start' });
+    });
+  });
+
   // Motion extras (JS-only so no-JS crawlers see full content; reduced-motion-safe).
   if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
     const graphEl = document.getElementById('graph');
