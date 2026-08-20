@@ -69,7 +69,6 @@ const thesisHtml = `<p class="lede">~15 siloed systems across the US &amp; EU �
 
 const navLinksHtml = `<a href="${esc(wh.links.github)}" target="_blank" rel="noopener">GitHub</a>`
   + `<a href="${esc(wh.links.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`
-  + `<a href="${esc(wh.links.resume)}" target="_blank" rel="noopener">Résumé</a>`
   + `<a href="mailto:${esc(wh.links.email)}">Email</a>`;
 
 // ---------- Dossier (all entries, always visible) ----------
@@ -134,7 +133,6 @@ const stackHtml = `<div class="stackgrid">${wh.stack.map(col =>
 const l = wh.links;
 const footHtml = `<a href="${esc(l.github)}" target="_blank" rel="noopener">GitHub</a>
   <a href="${esc(l.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>
-  <a href="${esc(l.resume)}" target="_blank" rel="noopener">Résumé ↓</a>
   <a href="mailto:${esc(l.email)}">${esc(l.email)}</a>`;
 
 const graphHtml = buildGraph(wh.entries, { sources: wh.sources, groups: wh.graphGroups, beyond: wh.beyondIds });

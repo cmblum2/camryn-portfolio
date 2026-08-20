@@ -242,5 +242,5 @@ export const stack = [
 ];
 
 export const links = {
-  github: 'https://github.com/cmblum2', linkedin: '#', resume: '#', email: 'camrynblum@gmail.com',
+  github: 'https://github.com/cmblum2', linkedin: 'https://www.linkedin.com/in/camrynblum/', email: 'camrynblum@gmail.com',
 };
