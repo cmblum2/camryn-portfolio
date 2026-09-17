@@ -25,12 +25,14 @@ function setLens(lens) {
 }
 
 // Graph node → jump to that project's card, expand it, and flash it.
-function jumpToCard(id) {
+function jumpToCard(id, behavior = 'smooth') {
   const card = document.querySelector(`#work article[data-eid="${window.CSS && CSS.escape ? CSS.escape(id) : id}"]`);
   if (!card) return;
+  if (card.classList.contains('is-hidden')) setLens('all');   // deep link into a lens-filtered card
+  card.closest('.reveal')?.classList.add('in');           // make sure the group is visible before we land on it
   const det = card.querySelector('details.dz-more');
   if (det) det.open = true;
-  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  card.scrollIntoView({ behavior, block: 'start' });      // 'start' + .dz scroll-margin clears the sticky nav (an open card is taller than the viewport)
   card.classList.add('flash');
   setTimeout(() => card.classList.remove('flash'), 1300);
 }
@@ -104,5 +106,21 @@ function init() {
   loadStatus((u) => fetch(u, { cache: 'no-store' })).then(systems => {
     document.getElementById('sys').innerHTML = renderStatus(systems);
   });
+
+  // Deep links: #<entry id> (e.g. #fbt) opens and scrolls to that project card; #<section id> scrolls
+  // to the section. Done here (after layout) because the browser's native anchor jump fires before
+  // the reveal/animation classes settle and lands at the top.
+  const goHash = (behavior) => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return;
+    const sel = window.CSS && CSS.escape ? CSS.escape(id) : id;
+    if (document.querySelector(`#work article[data-eid="${sel}"]`)) setTimeout(() => jumpToCard(id, behavior), 80);
+    else {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior, block: 'start' }), 80);
+    }
+  };
+  goHash('instant');                                   // arriving from a link: land there, no animation
+  addEventListener('hashchange', () => goHash(smooth)); // in-page hash changes keep the smooth scroll
 }
 document.addEventListener('DOMContentLoaded', init);
