@@ -2,5 +2,5 @@
   { "name": "site", "state": "up" },
   { "name": "nl2sql", "state": "idle" },
   { "name": "rag", "state": "idle" },
-  { "name": "dbt-ci", "state": "up" }
-], "checkedAt": "2026-11-08T03:46:48Z" }
+  { "name": "dbt-ci", "state": "down" }
+], "checkedAt": "2026-11-08T10:58:11Z" }
